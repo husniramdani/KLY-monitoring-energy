@@ -1,8 +1,9 @@
 <template>
-  <div>Home</div>
+  <div> Footer </div>
 </template>
+
 <script>
 export default {
-  layout: "landing"
+  name: "Footer"
 };
 </script>
