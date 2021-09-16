@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <v-app>
     <Navbar />
     <Nuxt />
     <Footer />
-  </div>
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: "Landing",
-}
+  name: "Landing"
+};
 </script>
