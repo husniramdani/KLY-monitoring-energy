@@ -1,41 +1,45 @@
 <template>
   <div>
-    <div class="px-10 max-w-landing m-auto">
-      <v-row no-gutters class="flex items-center justify-between h-22">
-        <v-col cols="6" sm="2" md="3" class="">
-          <nuxt-link to="/" class="text-xl font-semibold">Logo</nuxt-link>
-        </v-col>
-        <v-col
-          cols="6"
-          class="d-none d-sm-block text-center font-semibold space-x-8"
+    <v-container class="px-10">
+      <div class="max-w-landing m-auto">
+        <v-row
+          no-gutters
+          class="flex items-center justify-between h-16 sm:h-22"
         >
-          <nuxt-link class="text--darken-2 grey--text" to="/">Home</nuxt-link>
-          <nuxt-link class="text--darken-2 grey--text" to="/calculator"
-            >Calculator</nuxt-link
-          >
-          <nuxt-link class="text--darken-2 grey--text" to="/contact"
-            >Contact</nuxt-link
-          >
-        </v-col>
-        <v-col cols="4" md="3" class="d-none d-sm-block text-right">
-          <nuxt-link to="/login" class="mr-6 font-semibold">Login</nuxt-link>
-          <v-btn color="primary" depressed>Demo</v-btn>
-        </v-col>
-        <v-col cols="6" class="d-sm-none text-right">
-          <v-btn
-            small
-            class="mx-2"
-            fab
-            color="primary"
-            @click.stop="drawer = !drawer"
-          >
-            <v-icon>
-              mdi-format-list-bulleted-square
-            </v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
-    </div>
+          <v-col cols="6" sm="2" md="3" class="">
+            <nuxt-link to="/" class="text-xl font-semibold">Logo</nuxt-link>
+          </v-col>
+          <v-col cols="6" class="d-none d-sm-block text-center space-x-8">
+            <nuxt-link class="text--darken-2 grey--text" to="/">Home</nuxt-link>
+            <nuxt-link class="text--darken-2 grey--text" to="/calculator"
+              >Calculator</nuxt-link
+            >
+            <nuxt-link class="text--darken-2 grey--text" to="/contact"
+              >Contact</nuxt-link
+            >
+          </v-col>
+          <v-col cols="4" md="3" class="d-none d-sm-block text-right">
+            <nuxt-link to="/login" class="mr-6 font-semibold">Login</nuxt-link>
+            <v-btn color="primary" depressed
+              >Demo <ph-arrow-right class="ml-1" :size="16"
+            /></v-btn>
+          </v-col>
+          <v-col cols="6" class="d-sm-none text-right">
+            <v-btn
+              small
+              class="mx-2"
+              fab
+              color="primary"
+              @click.stop="drawer = !drawer"
+            >
+              <v-icon>
+                mdi-format-list-bulleted-square
+              </v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
         <!-- <v-list-item-content>
@@ -71,8 +75,12 @@
 </template>
 
 <script>
+import { PhArrowRight } from "phosphor-vue";
 export default {
   name: "Navbar",
+  components: {
+    PhArrowRight
+  },
   data() {
     return {
       drawer: null,
