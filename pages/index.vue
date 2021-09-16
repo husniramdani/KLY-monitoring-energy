@@ -1,9 +1,14 @@
 <template>
-  <div>Home</div>
+  <div>
+    INDEX
+  </div>
 </template>
 <script>
 export default {
   name: "Home",
-  layout: "landing"
+  layout: "landing",
+  data() {
+    return {};
+  }
 };
 </script>

@@ -1,27 +1,87 @@
 <template>
-<v-app>
-  <v-app-bar flat color="" class="px-32">
-    <v-row no-gutters class="flex items-center justify-between">
-      <v-col cols="12" sm="4" class="bg-blue-500">
-        <p class="text-lg font-semibold">Logo</p>
-      </v-col>
-      <v-col cols="12" sm="4" class="bg-yellow-500 text-center space-x-4">
-        <nuxt-link to="/">Home</nuxt-link>
-        <nuxt-link to="/calculator">Calculator</nuxt-link>
-        <nuxt-link to="/contact">Contact</nuxt-link>
-      </v-col>
-      <v-col cols="12" sm="4" class="bg-red-500 text-right">
-        <nuxt-link to="/login">Login</nuxt-link>
-        <nuxt-link to="/dashboard">Demo</nuxt-link>
-        <v-btn color="primary">button</v-btn>
-      </v-col>
-    </v-row>
-  </v-app-bar>
-</v-app>
+  <div>
+    <div class="px-10 max-w-landing m-auto">
+      <v-row no-gutters class="flex items-center justify-between h-22">
+        <v-col cols="6" sm="2" md="3" class="">
+          <nuxt-link to="/" class="text-xl font-semibold">Logo</nuxt-link>
+        </v-col>
+        <v-col
+          cols="6"
+          class="d-none d-sm-block text-center font-semibold space-x-8"
+        >
+          <nuxt-link class="text--darken-2 grey--text" to="/">Home</nuxt-link>
+          <nuxt-link class="text--darken-2 grey--text" to="/calculator"
+            >Calculator</nuxt-link
+          >
+          <nuxt-link class="text--darken-2 grey--text" to="/contact"
+            >Contact</nuxt-link
+          >
+        </v-col>
+        <v-col cols="4" md="3" class="d-none d-sm-block text-right">
+          <nuxt-link to="/login" class="mr-6 font-semibold">Login</nuxt-link>
+          <v-btn color="primary" depressed>Demo</v-btn>
+        </v-col>
+        <v-col cols="6" class="d-sm-none text-right">
+          <v-btn
+            small
+            class="mx-2"
+            fab
+            color="primary"
+            @click.stop="drawer = !drawer"
+          >
+            <v-icon>
+              mdi-format-list-bulleted-square
+            </v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list-item>
+        <!-- <v-list-item-content>
+          <v-btn color="primary">logout</v-btn>
+        </v-list-item-content> -->
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-content>
+            <v-btn color="primary">Login</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-content>
+            <v-btn color="primary">Demo</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  data() {
+    return {
+      drawer: null,
+      items: [
+        { title: "Home", icon: "mdi-view-dashboard" },
+        { title: "Calculator", icon: "mdi-forum" },
+        { title: "Contact", icon: "mdi-forum" }
+      ]
+    };
+  }
 };
 </script>

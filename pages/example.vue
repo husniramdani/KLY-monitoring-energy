@@ -4,6 +4,6 @@
 <script>
 export default {
   name: "example",
-  layout: "landing"
+  layout: "dashboard"
 };
 </script>
