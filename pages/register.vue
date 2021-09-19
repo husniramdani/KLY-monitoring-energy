@@ -2,7 +2,7 @@
   <v-container class="px-10 mt-md-10">
     <div class="max-w-landing m-auto">
       <v-row justify="center">
-        <v-col cols="12" md="10">
+        <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
               <v-card  elevation="1" class="mx-auto" outlined>

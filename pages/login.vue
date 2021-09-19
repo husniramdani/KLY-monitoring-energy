@@ -2,7 +2,7 @@
   <v-container class="px-10 mt-md-10">
     <div class="max-w-landing m-auto">
       <v-row justify="center">
-        <v-col cols="12" md="10">
+        <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
               <v-card  elevation="1" class="mx-auto" outlined>
@@ -47,7 +47,7 @@
                 </v-row>
                 <v-row justify="center" class="mb-5">
                   <v-col class="px-8 text-center" cols="12">
-                    <nuxt-link to="/" class="primary--text font-weight-light">Forgetten Your Password</nuxt-link>
+                    <nuxt-link to="/forgot-password" class="primary--text font-weight-light">Forgetten Your Password</nuxt-link>
                   </v-col>
                   <v-col class="px-8 text-center text-sm-body-2 .text-md-caption mt-5">
                     Don't have an account? 
