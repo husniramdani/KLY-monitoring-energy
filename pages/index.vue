@@ -28,6 +28,9 @@
           ><v-btn depressed large color="primary">Get It Now</v-btn></v-col
         >
       </v-row>
+      <v-row class="mt-10">
+        <CardLanding v-for="(content, index) in contents" :key="index" :content="content"/>
+      </v-row>
     </div>
   </v-container>
 </template>
@@ -36,7 +39,28 @@ export default {
   name: "Home",
   layout: "landing",
   data() {
-    return {};
+    return {
+      contents : [
+        {
+          title : "Realtime Data",
+          description : "Data is monitored and displayed in real time on the website for make it easier to monitor the data.",
+          image : "_nuxt/assets/images/realtime-1.webp",
+          alt: "realtime-1"
+        },
+        {
+          title : "Automatic Data Backup",
+          description : "When the data is monitored, the data is directly entered into our database so the possibility of data being lost is very small.",
+          image : "_nuxt/assets/images/automatic-data-backup.webp",
+          alt:"automatic-data-backup-1"
+        },
+        {
+          title : "IoT Based Control",
+          description : "This data monitoring device uses Internet of Things (IOT) technology so that data can be monitored remotely.",
+          image : "_nuxt/assets/images/iot-based-control.webp",
+          alt:"iot-based-control"
+        }
+      ]
+    };
   }
 };
 </script>
