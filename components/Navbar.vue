@@ -20,7 +20,7 @@
           </v-col>
           <v-col cols="4" md="3" class="d-none d-sm-block text-right">
             <nuxt-link to="/login" class="mr-6 font-semibold">Login</nuxt-link>
-            <v-btn color="primary" depressed
+            <v-btn color="primary" depressed @click="onDemo"
               >Demo <ph-arrow-right class="ml-1" :size="16"
             /></v-btn>
           </v-col>
@@ -90,6 +90,14 @@ export default {
         { title: "Contact", icon: "mdi-forum" }
       ]
     };
+  },
+  methods: {
+    onDemo() {
+      this.$router.push({
+        name: 'dashboard-demo',
+        path: '/dashboard/demo',
+      });
+    }
   }
 };
 </script>
