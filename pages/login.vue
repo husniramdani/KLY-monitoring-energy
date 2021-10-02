@@ -112,19 +112,29 @@ export default {
         email: this.email,
         password: this.password
       };
-      console.log(this.rememberMe)
       this.$api
         .$post("/auth/login", params)
         .then(async res => {
           const msg = res?.message || "Something when wrong!";
           console.log(res);
-          const maxAge = this.rememberMe ? 60 * 60 * 24 * 7 : 60 * 60 * 24
+          const maxAge = this.rememberMe ? 60 * 60 * 24 * 7 : 60 * 60 * 24;
           if (res.code === 200) {
             this.$cookit.set("access-token", res.data.access_token.token, {
               maxAge,
               sameSite: "lax",
               path: "/"
             });
+            if (res.data.roles[0] === "operator") {
+              this.$router.push({
+                name: `operator`,
+                path: `/operator`
+              });
+            } else if (res.data.roles[0] === "administrator") {
+              this.$router.push({
+                name: `administrator`,
+                path: `/administrator`
+              });
+            }
           }
         })
         .catch(err => {
