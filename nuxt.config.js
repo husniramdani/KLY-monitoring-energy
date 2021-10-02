@@ -29,6 +29,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/api',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,11 +39,15 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/moment',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    ['cookie-universal-nuxt', { alias: 'cookit' }],
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
