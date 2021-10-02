@@ -1,9 +1,9 @@
 <template>
-  <div>Product</div>
+  <div>Daftar Admin</div>
 </template>
 <script>
 export default {
-  name: "Product",
+  name: "DaftarAdmin",
   layout: "administrator"
 };
 </script>

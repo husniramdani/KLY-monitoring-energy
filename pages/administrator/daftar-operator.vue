@@ -1,9 +1,9 @@
 <template>
-  <div>PLTS</div>
+  <div>Daftar Operator</div>
 </template>
 <script>
 export default {
-  name: "PLTS",
+  name: "DaftarOperator",
   layout: "administrator"
 };
 </script>

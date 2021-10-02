@@ -20,13 +20,34 @@
           <v-list-item-title class="text-white">Dashboard</v-list-item-title>
         </v-list-item>
 
-        <span class="text-sm ml-5 text-gray-700">Main Menu</span>
-        <v-list-group :value="false" prepend-icon="mdi-chart-line-variant">
+        <span class="text-sm ml-5 text-gray-700">Administrator Menu</span>
+        <v-list-group :value="false" prepend-icon="mdi-account-circle">
           <template v-slot:activator>
-            <v-list-item-title>Alat Monitoring</v-list-item-title>
+            <v-list-item-title>Master User</v-list-item-title>
           </template>
           <v-list-item
-            v-for="(item, i) in items_monitoring"
+            v-for="(item, i) in items_user"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+            class="m-3 rounded"
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+
+        <v-list-group :value="false" prepend-icon="mdi-format-list-bulleted">
+          <template v-slot:activator>
+            <v-list-item-title>Daftar Produk</v-list-item-title>
+          </template>
+          <v-list-item
+            v-for="(item, i) in items_produk"
             :key="i"
             :to="item.to"
             router
@@ -107,22 +128,34 @@ export default {
       drawer: true,
       fixed: false,
       selectedItem: 0,
-      items_monitoring: [
+      items_user: [
         {
           icon: "",
-          title: "Daftar Produk",
-          to: "/administrator/monitoring-product"
+          title: "Daftar Admin",
+          to: "/administrator/daftar-admin"
         },
         {
           icon: "",
-          title: "Data PLTS",
-          to: "/administrator/monitoring-plts"
+          title: "Daftar Produk",
+          to: "/administrator/daftar-operator"
+        }
+      ],
+      items_produk: [
+        {
+          icon: "",
+          title: "Produk",
+          to: "/administrator/produk"
+        },
+        {
+          icon: "",
+          title: "Operator Produk",
+          to: "/administrator/operator-produk"
         }
       ],
       items_menu: [
         {
           icon: "mdi-message-outline",
-          title: "Hubungi Admin",
+          title: "Pesan",
           to: "/administrator/call-center"
         },
         {
