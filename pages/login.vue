@@ -5,6 +5,18 @@
         <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
+              <v-alert 
+                dense 
+                prominent
+                :value="alertAttribute.show"
+                :type="alertAttribute.type" 
+                border="left"
+                elevation="2" 
+                class="top-right"
+                transition="slide-x-reverse-transition"> 
+                <b>{{alertAttribute.title}}</b><br/>
+                {{alertAttribute.body}}
+              </v-alert>
               <v-card elevation="1" class="mx-auto" outlined>
                 <!-- form -->
                 <form @submit.prevent="userLogin">
@@ -103,11 +115,18 @@ export default {
             }
           }
         ]
+      },
+      alertAttribute:{
+        show:false,
+        type:"success",
+        title:"",
+        body:"",
       }
     };
   },
   methods: {
-    async userLogin() {
+    async userLogin(e) {
+      console.log(e)
       const params = {
         email: this.email,
         password: this.password
@@ -119,6 +138,12 @@ export default {
           console.log(res);
           const maxAge = this.rememberMe ? 60 * 60 * 24 * 7 : 60 * 60 * 24;
           if (res.code === 200) {
+            this.alertAttribute= {
+              show:true,
+              type:"success",
+              title:"Success",
+              body:res.message
+            }
             this.$cookit.set("access-token", res.data.access_token.token, {
               maxAge,
               sameSite: "lax",
@@ -138,9 +163,26 @@ export default {
           }
         })
         .catch(err => {
+          this.alertAttribute= {
+            show:true,
+            type:"warning",
+            title:"Failed",
+            body:err.response.data.message
+          }
+          setTimeout(() => this.alertAttribute.show = false, 6000)
           return err;
         });
     }
   }
 };
 </script>
+
+<style scoped>
+.top-right{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width:70%;
+  z-index:100
+}
+</style>
