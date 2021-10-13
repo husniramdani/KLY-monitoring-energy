@@ -15,7 +15,7 @@
             <v-btn depressed large color="primary" class="d-none d-sm-flex text-capitalize mr-5"
                 to="/calculator/simple-mode">Simple Mode</v-btn>
             <v-btn depressed large color="primary" class="d-none d-sm-flex text-capitalize"
-                >Advanced Mode</v-btn>
+                to="/calculator/advanced-mode">Advanced Mode</v-btn>
           </div>
         </v-col>
         <v-col>
