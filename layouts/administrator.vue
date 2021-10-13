@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" fixed app class="shadow">
+    <v-navigation-drawer v-model="drawer" fixed app class="shadow relative">
       <p class="text-xl text-center my-4 font-semibold">Logo</p>
       <div
         class="text-lg font-semibold py-2.5 px-2 text-center shadow mx-5 blue--text"
@@ -78,6 +78,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <ButtonLogout />
     </v-navigation-drawer>
     <v-app-bar
       fixed
@@ -122,6 +123,7 @@
 
 <script>
 export default {
+  middleware: "user",
   data() {
     return {
       clipped: false,

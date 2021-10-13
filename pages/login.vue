@@ -116,7 +116,6 @@ export default {
         .$post("/auth/login", params)
         .then(async res => {
           const msg = res?.message || "Something when wrong!";
-          console.log(res);
           const maxAge = this.rememberMe ? 60 * 60 * 24 * 7 : 60 * 60 * 24;
           if (res.code === 200) {
             this.$cookit.set("access-token", res.data.access_token.token, {
@@ -138,6 +137,8 @@ export default {
           }
         })
         .catch(err => {
+          const msg = err.response.data?.message || "Something when wrong!";
+          console.log(msg)
           return err;
         });
     }

@@ -8,6 +8,7 @@
 
 <script>
 export default {
-  name: "Landing"
+  name: "Landing",
+  middleware: "landing"
 };
 </script>
