@@ -5,7 +5,7 @@
         <v-col>
           <img
             class="w-2/12 md:w-3/12"
-            :src="content.image"
+            :src="require(`~/assets/images/${content.image}`)"
             :alt="content.alt"
           />
         </v-col>
