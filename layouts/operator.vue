@@ -57,6 +57,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <ButtonLogout />
     </v-navigation-drawer>
     <v-app-bar
       fixed
@@ -101,6 +102,7 @@
 
 <script>
 export default {
+  middleware: "dashboard",
   data() {
     return {
       clipped: false,

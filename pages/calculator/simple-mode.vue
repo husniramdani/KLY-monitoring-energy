@@ -85,7 +85,7 @@
       </div>
       <div v-if="result == 1">
         <v-row class="mb-10">
-          <v-col cols="12" sm="8" class="d-flex align-start flex-column"
+          <v-col cols="12" sm="6" class="d-flex align-start flex-column"
             ><p class="font-weight-medium text-h3 text-md-h2 mb-auto">
               Energy Calculation Results (AC)
             </p>
@@ -116,7 +116,7 @@
       </div>
       <div v-if="result==2">
         <v-row class="mb-10">
-          <v-col cols="12" sm="8" class="d-flex align-start flex-column"
+          <v-col cols="12" sm="6" class="d-flex align-start flex-column"
             ><p class="font-weight-medium text-h3 text-md-h2 mb-auto">
               Energy Calculation Results (DC)
             </p>
@@ -141,7 +141,7 @@
         </v-row>
         <v-row justify="space-around mt-4 mt-md-10">
           <v-col cols="2" class="d-none d-sm-block"></v-col>
-          <CardCalculatorResult title="Kapasitas Inverter" value="2490" :customize="false" unit="Watt"/>
+          <CardCalculatorResult title="Kapasitas PV - tanpa Inverter" value="2490" :customize="false" unit="Wattpeak"/>
           <CardCalculatorResult title="Kapasitas Baterai" value="59058" :customize="true" unit="Watthour"/>
           <v-col cols="2" class="d-none d-sm-block"></v-col>
         </v-row>

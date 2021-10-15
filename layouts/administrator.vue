@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" fixed app class="shadow">
+    <v-navigation-drawer v-model="drawer" fixed app class="shadow relative">
       <p class="text-xl text-center my-4 font-semibold">Logo</p>
       <div
         class="text-lg font-semibold py-2.5 px-2 text-center shadow mx-5 blue--text"
@@ -78,6 +78,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <ButtonLogout />
     </v-navigation-drawer>
     <v-app-bar
       fixed
@@ -121,7 +122,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  middleware: "dashboard",
   data() {
     return {
       clipped: false,
@@ -168,6 +172,9 @@ export default {
       rightDrawer: false,
       title: "Dashboard Administrator"
     };
-  }
+  },
+  computed: {
+    ...mapGetters("user", ["getUserAuth"]),
+  },
 };
 </script>

@@ -30,6 +30,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/api',
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -67,6 +68,14 @@ export default {
         }
       }
     }
+  },
+
+  // Base Router
+  router: {
+    base: '/',
+    middleware: [
+      // 'user',
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
