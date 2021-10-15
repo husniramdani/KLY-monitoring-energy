@@ -14,7 +14,9 @@ export default {
   name: "ButtonLogout",
   methods: {
     onLogout() {
-      console.log("logout");
+      this.$store.dispatch("user/onUserLogout");
+      this.$cookit.removeAll()
+      this.$router.push("/")
     }
   }
 };

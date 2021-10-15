@@ -122,8 +122,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  middleware: "user",
+  middleware: "dashboard",
   data() {
     return {
       clipped: false,
@@ -170,6 +172,9 @@ export default {
       rightDrawer: false,
       title: "Dashboard Administrator"
     };
-  }
+  },
+  computed: {
+    ...mapGetters("user", ["getUserAuth"]),
+  },
 };
 </script>

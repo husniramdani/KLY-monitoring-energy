@@ -7,8 +7,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Landing",
-  middleware: "landing"
+  middleware: "landing",
+  computed: {
+    ...mapGetters("user", ["getUserAuth"]),
+  },
+  mounted(){
+    // console.log(this.getUserAuth)
+  }
 };
 </script>

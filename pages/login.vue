@@ -97,7 +97,10 @@
     </div>
   </v-container>
 </template>
+
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Login",
   layout: "landing",
@@ -128,7 +131,6 @@ export default {
   },
   methods: {
     async userLogin(e) {
-      console.log(e);
       const params = {
         email: this.email,
         password: this.password
@@ -150,16 +152,23 @@ export default {
               sameSite: "lax",
               path: "/"
             });
+            this.$cookit.set("current-role", res.data.roles[0], {
+              maxAge,
+              sameSite: "lax",
+              path: "/"
+            });
             if (res.data.roles[0] === "operator") {
               this.$router.push({
                 name: `operator`,
                 path: `/operator`
               });
+              this.$store.commit("user/setUserAuth", "operator")
             } else if (res.data.roles[0] === "administrator") {
               this.$router.push({
                 name: `administrator`,
                 path: `/administrator`
               });
+              this.$store.commit("user/setUserAuth", "administrator")
             }
           }
         })
@@ -175,6 +184,9 @@ export default {
           return err;
         });
     }
+  },
+  computed: {
+    ...mapGetters("user", ["getUserAuth"]),
   }
 };
 </script>
