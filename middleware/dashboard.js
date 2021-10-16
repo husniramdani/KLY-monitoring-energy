@@ -10,12 +10,12 @@ export default function ({ app, store, route, redirect, }) {
    const userRole = app.$cookit.get('current-role')
 
    // redirect on login user
-   if (userRole === "administrator") {
-     return redirect('/administrator')
-   } else if (userRole === "operator"){
-     return redirect('/operator')
-    } else {
-     return redirect('/')
-   }
+  //  if (userRole === "administrator") {
+  //    return redirect('/administrator')
+  //  } else if (userRole === "operator"){
+  //    return redirect('/operator')
+  //   } else {
+  //    return redirect('/')
+  //  }
 
 }
