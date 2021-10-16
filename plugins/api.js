@@ -8,7 +8,7 @@ export default function ({ $axios, app }, inject) {
   })
 
   // change node_env to dev when ur on dev mode
-  const baseURL = process.env.NODE_ENV === "production" ? process.env.BASE_URL : process.env.DEV_URL
+  const baseURL = "https://energimonitoring.lifolial.com"
 
   // set base url
   api.setBaseURL(baseURL)
