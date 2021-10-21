@@ -17,7 +17,7 @@
           <v-list-item-icon>
             <v-icon color="white">mdi-home</v-icon>
           </v-list-item-icon>
-          <v-list-item-title class="text-white">Dashboard</v-list-item-title>
+          <v-list-item-title class="text-white" @click="title= 'Dashboard Administrator'">Dashboard</v-list-item-title>
         </v-list-item>
 
         <span class="text-sm ml-5 text-gray-700">Administrator Menu</span>
@@ -31,6 +31,7 @@
             :to="item.to"
             router
             exact
+            @click="changeTitle(item.title_header)"
             class="m-3 rounded"
           >
             <v-list-item-action>
@@ -50,6 +51,7 @@
             v-for="(item, i) in items_produk"
             :key="i"
             :to="item.to"
+            @click="changeTitle(item.title_header)"
             router
             exact
             class="m-3 rounded"
@@ -69,6 +71,7 @@
           :to="item.to"
           router
           exact
+          @click="changeTitle(item.title_header)"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -89,7 +92,7 @@
       elevation="1"
     >
       <v-app-bar-nav-icon class="d-lg-none" @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title class="text-uppercase" v-text="title" />
       <v-spacer />
       <!-- <v-btn
         icon
@@ -99,7 +102,7 @@
       </v-btn> -->
     </v-app-bar>
     <v-main class="grey lighten-5">
-      <v-container class="my-10 mx-8">
+      <v-container class="py-10 mt-5 px-8">
         <Nuxt />
       </v-container>
     </v-main>
@@ -136,36 +139,36 @@ export default {
         {
           icon: "",
           title: "Daftar Admin",
-          to: "/administrator/daftar-admin"
+          to: "/administrator/daftar-admin",
+          title_header:"Daftar Admin"
         },
         {
           icon: "",
-          title: "Daftar Produk",
-          to: "/administrator/daftar-operator"
+          title: "Daftar Operator",
+          to: "/administrator/daftar-operator",
+          title_header:"Daftar Operator"
         }
       ],
       items_produk: [
         {
           icon: "",
           title: "Produk",
-          to: "/administrator/produk"
+          to: "/administrator/produk",
+          title_header:"Daftar Produk"
         },
         {
           icon: "",
           title: "Operator Produk",
-          to: "/administrator/operator-produk"
+          to: "/administrator/operator-produk",
+          title_header:"Daftar Operator Produk"
         }
       ],
       items_menu: [
         {
-          icon: "mdi-message-outline",
-          title: "Pesan",
-          to: "/administrator/call-center"
-        },
-        {
           icon: "mdi-account-outline",
           title: "Akun Saya",
-          to: "/administrator/account"
+          to: "/administrator/account",
+          title_header:"Profil Saya"
         }
       ],
       right: true,
@@ -176,5 +179,11 @@ export default {
   computed: {
     ...mapGetters("user", ["getUserAuth"]),
   },
+  methods:{
+    changeTitle(title){
+      console.log("Test")
+      this.title = title
+    }
+  }
 };
 </script>

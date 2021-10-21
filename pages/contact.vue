@@ -1,42 +1,16 @@
 <template>
   <v-container class="px-10 mt-md-10">
     <div class="max-w-landing m-auto">
+      <br><br>
       <v-row justify="center">
         <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
               <v-card  elevation="1" class="mx-auto" outlined>
                 <v-row class="mt-5">
-                  <v-col cols="12" class="px-8">
-                    <v-text-field
-                      v-model="name"
-                      :rules="rules.name"
-                      outlined
-                      filled
-                      required
-                      placeholder="Name"
-                      hide-details="auto"
-                      color="primary"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" class="px-8">
-                    <v-text-field
-                      v-model="email"
-                      :rules="rules.email"
-                      outlined
-                      filled
-                      required
-                      placeholder="Email"
-                      hide-details="auto"
-                      color="primary"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" class="px-8">
-                    <v-textarea
-                      v-model="message" 
-                      filled
-                      hide-details="auto"
-                    ></v-textarea>
+                  <v-col cols="12" class="text-center">
+                    <span class="font-weight-bold">Need Support?</span><br/>
+                    <span class="body-2">Contact us if you need further assistance.</span>
                   </v-col>
                 </v-row>
                 <v-row justify="center" class="my-5">
@@ -56,6 +30,7 @@
           </v-row>
         </v-col>
       </v-row>
+      <br><br><br>
     </div>
   </v-container>
 </template>
