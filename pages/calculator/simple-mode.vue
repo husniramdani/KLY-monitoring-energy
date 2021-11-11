@@ -87,7 +87,7 @@
         <v-row class="mb-10">
           <v-col cols="12" sm="6" class="d-flex align-start flex-column"
             ><p class="font-weight-medium text-h3 text-md-h2 mb-auto">
-              Energy Calculation Results (AC)
+              Hasil Perhitungan Energi (AC)
             </p>
             <v-btn depressed large color="primary" class="mt-5" @click="step=1, result=0"
               ><v-icon dark> mdi-arrow-left </v-icon>
@@ -118,7 +118,7 @@
         <v-row class="mb-10">
           <v-col cols="12" sm="6" class="d-flex align-start flex-column"
             ><p class="font-weight-medium text-h3 text-md-h2 mb-auto">
-              Energy Calculation Results (DC)
+              Hasil Perhitungan Energi (DC)
             </p>
             <v-btn depressed large color="primary" class="mt-5" @click="step=1, result=0"
               ><v-icon dark> mdi-arrow-left </v-icon>
@@ -162,8 +162,8 @@ export default {
         { id: 2, name : "Sleman" },
       ],
       location: null,
-      electricTypeList : [ 
-        {id : 1, name : "AC"}, 
+      electricTypeList : [
+        {id : 1, name : "AC"},
         {id : 2, name : "DC"}
       ],
       electricType: null,

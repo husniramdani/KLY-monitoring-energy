@@ -15,8 +15,8 @@
                     />
                   </v-col>
                   <v-col cols="12" class="text-center">
-                    <span class="font-weight-bold">Trouble Log In?</span><br/>
-                    <span class="body-2">Enter Your Email to obtain the verification code.</span>
+                    <span class="font-weight-bold">Kesulitan Login?</span><br/>
+                    <span class="body-2">Masukkan email Anda untuk mendapatkan kode verifikasi.</span>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
@@ -37,7 +37,7 @@
                       outlined
                       filled
                       required
-                      placeholder="Verification Code"
+                      placeholder="Kode Verifikasi"
                       hide-details="auto"
                       color="primary"
                     ></v-text-field>
@@ -45,7 +45,7 @@
                 </v-row>
                 <v-row justify="center" class="mb-5">
                   <v-col cols="6" md="6">
-                    <v-btn depressed large block color="primary" class="text-capitalize">Send Code</v-btn>
+                    <v-btn depressed large block color="primary" class="text-capitalize">Selanjutnya</v-btn>
                   </v-col>
                 </v-row>
               </v-card>
@@ -56,7 +56,7 @@
     </div>
   </v-container>
 </template>
-  
+
 <script>
 export default {
   name: "ForgotPassword",

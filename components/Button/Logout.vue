@@ -4,7 +4,7 @@
       <v-icon light>
         mdi-exit-to-app
       </v-icon>
-      Log Out
+      Keluar
     </v-btn>
   </div>
 </template>

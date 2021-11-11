@@ -4,15 +4,13 @@
       <v-row>
         <v-col cols="12" sm="6"
           ><p class="font-weight-medium text-h4 text-md-h3">
-            Energy Monitoring System
+            Sistem Pemantauan Energi
           </p>
           <p class="text-body-2">
-            Make smart decisions about your energy use. You will be surprised
-            with the amount of Savings!Make smart decisions about your energy
-            use. You will be surprised with the amount of Savings!
+            Buat keputusan cerdas tentang penggunaan energi Anda. Anda akan terkejut dengan jumlah Tabungan!
           </p>
           <v-btn depressed large color="primary" class="d-none d-sm-block"
-            >Get It Now</v-btn
+            >Dapatkan Sekarang</v-btn
           >
         </v-col>
         <v-col>
@@ -25,7 +23,7 @@
       </v-row>
       <v-row class="d-sm-none">
         <v-col class="d-flex justify-center"
-          ><v-btn depressed large color="primary">Get It Now</v-btn></v-col
+          ><v-btn depressed large color="primary">Dapatkan Sekarang</v-btn></v-col
         >
       </v-row>
       <v-row class="mt-10">
@@ -42,20 +40,20 @@ export default {
     return {
       contents : [
         {
-          title : "Realtime Data",
-          description : "Data is monitored and displayed in real time on the website for make it easier to monitor the data.",
+          title : "Data Waktu Nyata",
+          description : "Data dipantau dan ditampilkan secara real time di situs web untuk memudahkan pemantauan data.",
           image : "realtime-1.webp",
           alt: "realtime-1"
         },
         {
-          title : "Automatic Data Backup",
-          description : "When the data is monitored, the data is directly entered into our database so the possibility of data being lost is very small.",
+          title : "Pencadangan Data Otomatis",
+          description : "Saat data dimonitor, data langsung masuk ke database kami sehingga kemungkinan data hilang sangat kecil.",
           image : "automatic-data-backup.webp",
           alt:"automatic-data-backup-1"
         },
         {
-          title : "IoT Based Control",
-          description : "This data monitoring device uses Internet of Things (IOT) technology so that data can be monitored remotely.",
+          title : "Kontrol Berbasis IoT",
+          description : "Alat pemantau data ini menggunakan teknologi Internet of Things (IOT) sehingga data dapat dipantau dari jarak jauh.",
           image : "iot-based-control.webp",
           alt:"iot-based-control"
         }

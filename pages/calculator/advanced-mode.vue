@@ -122,7 +122,7 @@
                   <v-row justify="end">
                     <v-col cols="4">
                       <v-btn small depressed outlined block color="error" class="text-capitalize float-right" @click="removeLoad(index)">
-                        <v-icon dark> mdi-plus </v-icon>Remove
+                        <v-icon dark> mdi-plus </v-icon>Hapus
                       </v-btn>
                     </v-col>
                   </v-row>
@@ -292,7 +292,7 @@
         <v-row class="mb-10">
           <v-col cols="12" sm="6" class="d-flex align-start flex-column"
             ><p class="font-weight-medium text-h3 text-md-h2 mb-auto">
-              Energy Calculation Results
+              Hasil Perhitungan Energi
             </p>
             <v-btn depressed large color="primary" class="mt-5" @click="step=1, result=0"
               ><v-icon dark> mdi-arrow-left </v-icon>
