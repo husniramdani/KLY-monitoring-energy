@@ -1,21 +1,33 @@
 <template>
   <v-container class="px-10 mt-md-10">
     <div class="max-w-landing m-auto">
-      <br><br>
+      <br /><br />
       <v-row justify="center">
         <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
-              <v-card  elevation="1" class="mx-auto" outlined>
+              <v-card elevation="1" class="mx-auto" outlined>
                 <v-row class="mt-5">
                   <v-col cols="12" class="text-center">
-                    <span class="font-weight-bold">Need Support?</span><br/>
-                    <span class="body-2">Contact us if you need further assistance.</span>
+                    <span class="font-weight-bold">Butuh Bantuan?</span><br />
+                    <span class="body-2"
+                      >Hubungi kami jika Anda membutuhkan bantuan lebih
+                      lanjut.</span
+                    >
                   </v-col>
                 </v-row>
                 <v-row justify="center" class="my-5">
                   <v-col cols="6" sm="6">
-                    <v-btn depressed large block color="primary" class="text-capitalize">Send Message</v-btn>
+                    <v-btn
+                      depressed
+                      large
+                      block
+                      color="primary"
+                      class="text-capitalize"
+                      href="https://api.whatsapp.com/send?phone=+6289630223381&text=Dear%20Admin"
+                      target="_blank"
+                      >Kirim Pesan</v-btn
+                    >
                   </v-col>
                 </v-row>
               </v-card>
@@ -30,7 +42,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <br><br><br>
+      <br /><br /><br />
     </div>
   </v-container>
 </template>
@@ -40,24 +52,22 @@ export default {
   layout: "landing",
   data() {
     return {
-      email:"",
-      name:"",
-      message:"",
+      email: "",
+      name: "",
+      message: "",
       rules: {
-          name: [
-            val => val.length <= 20 || `Max 20 characters!`,
-          ],
-          email: [
-            val => {
-              if(val.length > 0) {
-                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return pattern.test(val) || 'Invalid e-mail.';
-              } else {
-                return true
-              }
+        name: [val => val.length <= 20 || `Max 20 characters!`],
+        email: [
+          val => {
+            if (val.length > 0) {
+              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              return pattern.test(val) || "Invalid e-mail.";
+            } else {
+              return true;
             }
-          ],
-        },
+          }
+        ]
+      }
     };
   }
 };

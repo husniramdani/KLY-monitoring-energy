@@ -5,15 +5,15 @@
         <v-col cols="12" md="8">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6" class="mb-5">
-              <v-alert 
-                dense 
+              <v-alert
+                dense
                 prominent
                 :value="alertAttribute.show"
-                :type="alertAttribute.type" 
+                :type="alertAttribute.type"
                 border="left"
-                elevation="2" 
+                elevation="2"
                 class="top-right"
-                transition="slide-x-reverse-transition"> 
+                transition="slide-x-reverse-transition">
                 <b>{{alertAttribute.title}}</b><br/>
                 {{alertAttribute.body}}
               </v-alert>
@@ -38,7 +38,7 @@
                       outlined
                       filled
                       required
-                      placeholder="Fullname"
+                      placeholder="Nama Lengkap"
                       hide-details="auto"
                       color="primary"
                     ></v-text-field>
@@ -50,7 +50,7 @@
                       outlined
                       filled
                       required
-                      placeholder="Username"
+                      placeholder="Nama Pengguna"
                       hide-details="auto"
                       color="primary"
                     ></v-text-field>
@@ -63,20 +63,20 @@
                       required
                       filled
                       type="password"
-                      placeholder="Password"
+                      placeholder="Kata Sandi"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row justify="center" class="mt-10">
                   <v-col cols="6" sm="6">
-                    <v-btn @click="userRegister" depressed large block color="primary">Sign Up</v-btn>
+                    <v-btn @click="userRegister" depressed large block color="primary">Daftar</v-btn>
                   </v-col>
                 </v-row>
                 <v-row justify="center" class="mb-5">
                   <v-col class="px-8 text-center text-sm-body-2 .text-md-caption mt-5">
-                    Have an account? 
-                    <nuxt-link to="/login" class="primary--text">Login</nuxt-link>
+                    Sudah punya akun?
+                    <nuxt-link to="/login" class="primary--text">Masuk disini</nuxt-link>
                   </v-col>
                 </v-row>
               </v-card>

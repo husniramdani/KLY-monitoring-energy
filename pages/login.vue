@@ -42,7 +42,7 @@
                         required
                         filled
                         type="password"
-                        placeholder="Password"
+                        placeholder="Kata Sandi"
                         hide-details="auto"
                       ></v-text-field>
                     </v-col>
@@ -50,7 +50,7 @@
                       <v-checkbox
                         class="mt-0"
                         v-model="rememberMe"
-                        label="Remember Me"
+                        label="Ingat Saya"
                         color="primary"
                         hide-details="auto"
                       ></v-checkbox>
@@ -59,7 +59,7 @@
                   <v-row justify="center" class="mt-10">
                     <v-col cols="6" md="6">
                       <v-btn type="submit" depressed large block color="primary"
-                        >Log In</v-btn
+                        >Masuk</v-btn
                       >
                     </v-col>
                   </v-row>
@@ -68,15 +68,15 @@
                       <nuxt-link
                         to="/forgot-password"
                         class="primary--text font-weight-light"
-                        >Forgetten Your Password</nuxt-link
+                        >Lupa kata sandi?</nuxt-link
                       >
                     </v-col>
                     <v-col
                       class="px-8 text-center text-sm-body-2 .text-md-caption mt-5"
                     >
-                      Don't have an account?
+                      Belum punya akun?
                       <nuxt-link to="/register" class="primary--text"
-                        >Sign Up</nuxt-link
+                        >Daftar disini</nuxt-link
                       >
                     </v-col>
                   </v-row>

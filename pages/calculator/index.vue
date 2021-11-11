@@ -4,18 +4,30 @@
       <v-row>
         <v-col cols="12" sm="6"
           ><p class="font-weight-medium text-h4 text-md-h3">
-            PLTS Calculator
+            Kalkulator PLTS
           </p>
           <p class="text-body-2">
-              Calculate how musch power you need with these solar calculators 
-              to estimate the size and the cost of the solar panel array 
-              needed for your home energy usage.
+            Hitung berapa banyak daya yang Anda butuhkan dengan kalkulator surya
+            ini untuk memperkirakan ukuran dan biaya susunan panel surya yang
+            dibutuhkan untuk penggunaan energi rumah Anda.
           </p>
           <div class="d-flex align-end">
-            <v-btn depressed large color="primary" class="d-none d-sm-flex text-capitalize mr-5"
-                to="/calculator/simple-mode">Simple Mode</v-btn>
-            <v-btn depressed large color="primary" class="d-none d-sm-flex text-capitalize"
-                to="/calculator/advanced-mode">Advanced Mode</v-btn>
+            <v-btn
+              depressed
+              large
+              color="primary"
+              class="d-none d-sm-flex text-capitalize mr-5"
+              to="/calculator/simple-mode"
+              >Kalkulator Sederhana</v-btn
+            >
+            <v-btn
+              depressed
+              large
+              color="primary"
+              class="d-none d-sm-flex text-capitalize"
+              to="/calculator/advanced-mode"
+              >Kalkulator Lanjutan</v-btn
+            >
           </div>
         </v-col>
         <v-col>
@@ -28,8 +40,12 @@
       </v-row>
       <v-row class="d-sm-none mt-5">
         <v-col class="d-flex justify-center">
-            <v-btn depressed large color="primary" class="text-capitalize mr-5">Simple Mode</v-btn>
-            <v-btn depressed large color="primary" class="text-capitalize">Advanced Mode</v-btn>
+          <v-btn depressed large color="primary" class="text-capitalize mr-5"
+            >Kalkulator Sederhana</v-btn
+          >
+          <v-btn depressed large color="primary" class="text-capitalize"
+            >Kalkulator Lanjutan</v-btn
+          >
         </v-col>
       </v-row>
     </div>

@@ -15,8 +15,8 @@
                     />
                   </v-col>
                   <v-col cols="12" class="text-center">
-                    <span class="font-weight-bold">Set New Password?</span><br/>
-                    <span class="body-2">Please set a new password for the following account <span class="primary--text">bla***@gmail.com</span></span>
+                    <span class="font-weight-bold">Buat Kata Sandi Baru</span><br/>
+                    <span class="body-2">Silakan buat kata sandi baru untuk akun berikut <span class="primary--text">bla***@gmail.com</span></span>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
@@ -25,7 +25,7 @@
                       outlined
                       filled
                       required
-                      placeholder="Email"
+                      placeholder="Kata Sandi Baru"
                       hide-details="auto"
                       color="primary"
                     ></v-text-field>
@@ -37,7 +37,7 @@
                       outlined
                       filled
                       required
-                      placeholder="Verification Code"
+                      placeholder="Konfirmasi Sandi"
                       hide-details="auto"
                       color="primary"
                     ></v-text-field>
@@ -45,7 +45,7 @@
                 </v-row>
                 <v-row justify="center" class="mb-5">
                   <v-col cols="6" md="6">
-                    <v-btn depressed large block color="primary" class="text-capitalize">Next</v-btn>
+                    <v-btn depressed large block color="primary" class="text-capitalize">Simpan</v-btn>
                   </v-col>
                 </v-row>
               </v-card>
@@ -56,7 +56,7 @@
     </div>
   </v-container>
 </template>
-  
+
 <script>
 export default {
   name: "ForgotPassword",

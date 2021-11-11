@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app class="shadow">
-      <p class="text-xl text-center my-4 font-semibold">Logo</p>
+      <img class="m-auto mt-8 mb-4 w-10" src="~assets/images/logo.webp" alt="logo" />
       <div
         class="text-lg font-semibold py-2.5 px-2 text-center shadow mx-5 blue--text"
       >
