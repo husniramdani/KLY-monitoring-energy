@@ -9,7 +9,7 @@
       </div>
       <v-list dense>
         <v-list-item
-          to="/dashboard"
+          to="/dashboard/demo"
           router
           exact
           class="m-3 bg-blue-400 rounded-lg"
@@ -77,7 +77,7 @@
       </v-btn> -->
     </v-app-bar>
     <v-main class="grey lighten-5">
-      <v-container class="my-10 mx-8">
+      <v-container class="py-10 mt-5 px-8">
         <Nuxt />
       </v-container>
     </v-main>

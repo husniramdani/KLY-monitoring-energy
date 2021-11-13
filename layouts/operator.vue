@@ -13,6 +13,7 @@
           router
           exact
           class="m-3 bg-blue-400 rounded-lg"
+          @click="changeTitle('Dashboard Operator')"
         >
           <v-list-item-icon>
             <v-icon color="white">mdi-home</v-icon>
@@ -31,6 +32,7 @@
             :to="item.to"
             router
             exact
+            @click="changeTitle(item.title_header)"
             class="m-3 rounded"
           >
             <v-list-item-action>
@@ -48,6 +50,7 @@
           :to="item.to"
           router
           exact
+          @click="changeTitle(item.title_header)"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -78,7 +81,7 @@
       </v-btn> -->
     </v-app-bar>
     <v-main class="grey lighten-5">
-      <v-container class="my-10 mx-8">
+      <v-container class="py-5 mt-5 px-8">
         <Nuxt />
       </v-container>
     </v-main>
@@ -113,30 +116,39 @@ export default {
         {
           icon: "",
           title: "Daftar Produk",
-          to: "/operator/monitoring-product"
+          to: "/operator/monitoring-product",
+          title_header:"Daftar Produk"
         },
         {
           icon: "",
           title: "Data PLTS",
-          to: "/operator/monitoring-plts"
+          to: "/operator/monitoring-plts",
+          title_header:"Semua Data PLTS"
         }
       ],
       items_menu: [
         {
           icon: "mdi-message-outline",
           title: "Hubungi Admin",
-          to: "/operator/call-center"
+          to: "/operator/call-center",
+          title_header:"Pesan Admin"
         },
         {
           icon: "mdi-account-outline",
           title: "Akun Saya",
-          to: "/operator/account"
+          to: "/operator/account",
+          title_header:"Profil Saya"
         }
       ],
       right: true,
       rightDrawer: false,
       title: "Dashboard Operator"
     };
+  },
+  methods:{
+    changeTitle(title){
+      this.title = title
+    }
   }
 };
 </script>

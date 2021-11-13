@@ -1,9 +1,277 @@
 <template>
-  <div>PLTS</div>
+  <div>
+    <v-row class="mt-0">
+      <v-col cols="12" sm="8" md="7">
+        <v-text-field
+            solo
+            dense
+            v-model="search_code"
+            label="Pilih Kode Produk"
+            prepend-inner-icon="mdi-magnify"
+            hide-details="auto"
+          ></v-text-field>
+      </v-col>
+      <v-col class="d-flex justify-end">
+        <v-btn
+          color="primary"
+          class="text-capitalize mb-3 mr-3"
+          small
+          @click="showGraphData()"
+        ><v-icon dark> mdi-plus </v-icon>Data Grafik</v-btn>
+        <v-btn
+          color="primary"
+          class="text-capitalize mb-3 mr-3"
+          small
+          @click="showTableData"
+        ><v-icon dark> mdi-plus </v-icon>Data Tabel</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="7">
+        <v-btn
+          color="accent"
+          elevation="2"
+          outlined
+          small
+          to="/operator/monitoring-product/add"
+          class="text-capitalize mb-3 mr-3"
+        ><v-icon dark> mdi-plus </v-icon>Download Keterangan Tabel</v-btn>
+        <v-btn
+          color="warning"
+          elevation="2"
+          outlined
+          small
+          class="text-capitalize mb-3 mr-3"
+        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download PDF</v-btn>
+        <v-btn
+          color="success"
+          elevation="2"
+          outlined
+          small
+          class="text-capitalize mb-3"
+        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn>
+      </v-col>
+      <v-col class="d-flex justify-end">
+        <v-btn
+          class="text-capitalize mb-3 mr-3 primary--text"
+          small
+        >Bulanan</v-btn>
+        <v-btn
+          class="text-capitalize mb-3 mr-3 primary--text"
+          small
+        >Harian</v-btn>
+      </v-col>
+    </v-row>
+    <v-row v-if="table_data">
+      <v-col cols="12" v-for="j in 4" :key="j">
+        <v-card 
+          elevation="1"
+          class="pa-7">
+          <v-row>
+            <v-col cols="12" md="4">
+              <p class="primary--text font-weight-bold">Data lingkungan</p>
+              LUX-Intensitas Cahaya (Lux) <br/>
+              IRR-Intensitas Irradian Cahaya (W/m2) <br/>
+              SUD-Suhu Udara (C) <br/>
+              KUD-Kelembapan Udara (%RH) <br/>
+              TDT-Tanggal Data Diterima <br/>
+              WSV-Waktu Server <br/>
+            </v-col>
+            <v-col cols="12" md="8">
+              <table>
+                <thead>
+                  <tr class="primary white--text">
+                    <th class="text-center">NO</th>
+                    <th class="text-center">LUX</th>
+                    <th class="text-center">IRR</th>
+                    <th class="text-center">SUD</th>
+                    <th class="text-center">KUD</th>
+                    <th class="text-center">TDT</th>
+                    <th class="text-center">WSV</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="i in 5" :key="i">
+                    <td class="text-center">{{i}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-if="graph_data">
+      <v-col cols="12" md="6">
+        <v-card 
+          elevation="1"
+          class="pa-7">
+          <v-row>
+            <v-col cols="12 text-center justify-end">
+              <p class="text-h6 text-md-h6 font-weight-medium">
+                Data Lingkungan
+              </p>
+              <div class="line-decoration"></div>
+            </v-col>
+            <v-col cols="12" class="pa-0">
+              <div class="canvas-chart" ref="chartdiv">
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-card 
+          elevation="1"
+          class="pa-7">
+          <v-row>
+            <v-col cols="12 text-center justify-end">
+              <p class="text-h6 text-md-h6 font-weight-medium">
+                Data Lingkungan
+              </p>
+              <div class="line-decoration"></div>
+            </v-col>
+            <v-col cols="12" class="pa-0">
+              <div class="canvas-chart" ref="chartdiv1">
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 <script>
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
+am4core.useTheme(am4themes_animated)
+
 export default {
   name: "PLTS",
-  layout: "operator"
+  layout: "operator",
+  components: am4core, am4charts, am4themes_animated,
+  data(){
+    return {
+      search_code:"",
+      table_data : false,
+      graph_data : false,
+      chartData1 : [{
+        "x": 10,
+        "value": 450,
+        "value2": 162,
+        "value3": 1100,
+        "value4": 200
+      }, {
+        "x": 30,
+        "value": 669,
+        "value3": 841,
+        "value4": 150
+      }, {
+        "x": 40,
+        "value": 1200,
+        "value3": 199,
+        "value4": 400
+      }, {
+        "x": 50,
+        "value": 1000,
+        "value2": 867,
+        "value3": 250,
+        "value4": 450
+      }, {
+        "x": 60,
+        "value2": 185,
+        "value3": 669,
+        "value4": 450
+      }, {
+        "x": 70,
+        "value": 150,
+        "value2": 150,
+        "value3": 200,
+        "value4": 450
+      }, {
+        "x": 80,
+        "value": 1220,
+        "value2": 350,
+        "value3": 600
+      }]
+    }
+  },
+  methods:{
+    showGraphData(){
+      this.table_data = false
+      this.graph_data = true
+      this.lineChart(this.$refs.chartdiv, this.chartData1)
+      this.lineChart(this.$refs.chartdiv1, this.chartData1)
+    },
+    showTableData(){
+      this.table_data = true
+      this.graph_data = false
+    },
+    lineChart(refs, datas){
+      let chart = am4core.create(refs, am4charts.XYChart);
+      chart.data = datas
+      // Create axes
+      var dateAxis = chart.xAxes.push(new am4charts.ValueAxis());
+      dateAxis.renderer.grid.template.location = 0;
+      dateAxis.renderer.minGridDistance = 30;
+
+      chart.yAxes.push(new am4charts.ValueAxis());
+      this.createSeries(chart, "value", "LUX-Intensitas Cahaya (Lux)");
+      this.createSeries(chart, "value2", "IRR-Intensitas Irradian Cahaya (W/m2)");
+      this.createSeries(chart, "value3", "SUD-Suhu Udara (C)");
+      this.createSeries(chart, "value4", "KUD-Kelembapan Udara (%RH)");
+      chart.legend = new am4charts.Legend();
+      chart.cursor = new am4charts.XYCursor();
+    },
+    createSeries(chart, field, name) {
+      var series = chart.series.push(new am4charts.LineSeries());
+      series.dataFields.valueY = field;
+      series.dataFields.valueX = "x";
+      series.name = name;
+      series.tooltipText = "{dateX}: [b]{valueY}[/]";
+      series.strokeWidth = 2;
+      
+      series.smoothing = "monotoneX";
+      
+      var bullet = series.bullets.push(new am4charts.CircleBullet());
+      bullet.circle.stroke = am4core.color("#fff");
+      bullet.circle.strokeWidth = 2;
+      
+      return series;
+    }
+  },
 };
 </script>
+
+<style scoped>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.line-decoration {
+  height: 2px;
+  width: 20%;
+  background-color: #2196f3;
+  margin: auto;
+}
+.canvas-chart {
+  width: 100%;
+  height: 400px;
+}
+</style>
