@@ -7,6 +7,7 @@
           elevation="2"
           outlined
           small
+          to="/operator/monitoring-product/add"
           class="text-capitalize mb-3 mr-3"
         ><v-icon dark> mdi-plus </v-icon>Produk</v-btn>
         <v-btn
@@ -30,7 +31,7 @@
         <v-text-field
             solo
             v-model="search_code"
-            label="Cari Kode Produksi"
+            label="Cari Kode Produksi atau Nama Operator"
             prepend-inner-icon="mdi-magnify"
             hide-details="auto"
           ></v-text-field>
@@ -75,8 +76,8 @@
 </template>
 <script>
 export default {
-  name: "Produk",
-  layout: "administrator",
+  name: "Product",
+  layout: "operator",
   data () {
     return {
       search_code:"",
@@ -88,17 +89,19 @@ export default {
           value: 'no',
           class: "white--text blue" 
         },
-        { text: 'KODE PRODUKSi', value: 'code', class: "white--text blue"  },
-        { text: 'TANGGAL PEMBUATAN', value: 'date_created', filterable: false, class: "white--text blue" },
-        { text: 'TANGGAL RILIS', value: 'date_release', filterable: false, class: "white--text blue" },
+        { text: 'NAMA ALAT', value: 'tool_name', class: "white--text blue"  },
+        { text: 'KODE PRODUK', value: 'product_code', filterable: false, class: "white--text blue" },
+        { text: 'TANGGAL PEMBUATAN', value: 'created_date', filterable: false, class: "white--text blue" },
+        { text: 'KODE LOKASI', value: 'location_code', filterable: false, class: "white--text blue" },
         { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue" }
       ],
       products: [
         {
           no: 1,
-          code: "KODEPRODUKSI1",
-          date_created: "16 September 2021",
-          date_release: "28 September 2021",
+          tool_name: "nama alat",
+          product_code: "kode here",
+          created_date: "date created here",
+          location_code: "location code here",
           id: 1,
         },
       ],

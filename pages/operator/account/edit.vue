@@ -1,9 +1,11 @@
 <template>
-  <div>Product</div>
+  <div>
+    <EditAccount />
+  </div>
 </template>
 <script>
 export default {
-  name: "Product",
+  name: "Account",
   layout: "operator"
 };
 </script>

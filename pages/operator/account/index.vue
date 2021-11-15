@@ -1,5 +1,7 @@
 <template>
-  <div>Account</div>
+  <div>
+    <MyAccount :source="operator"/>
+  </div>
 </template>
 <script>
 export default {

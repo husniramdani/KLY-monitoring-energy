@@ -13,6 +13,7 @@
           router
           exact
           class="m-3 bg-blue-400 rounded-lg"
+          @click="changeTitle('Dashboard Administrator')"
         >
           <v-list-item-icon>
             <v-icon color="white">mdi-home</v-icon>
@@ -181,7 +182,6 @@ export default {
   },
   methods:{
     changeTitle(title){
-      console.log("Test")
       this.title = title
     }
   }
