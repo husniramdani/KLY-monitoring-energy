@@ -8,7 +8,8 @@
           outlined
           small
           class="text-capitalize mb-3 mr-3"
-        ><v-icon dark> mdi-plus </v-icon>Produk</v-btn>
+          to="/administrator/admin/add"
+        ><v-icon dark> mdi-plus </v-icon>Admin</v-btn>
         <v-btn
           color="warning"
           elevation="2"
@@ -29,8 +30,8 @@
       <v-col cols="12" sm="8" md="5">
         <v-text-field
             solo
-            v-model="search_code"
-            label="Cari Kode Produksi"
+            v-model="search"
+            label="Cari Admin"
             prepend-inner-icon="mdi-magnify"
             hide-details="auto"
           ></v-text-field>
@@ -41,30 +42,42 @@
         <v-data-table
           dense
           :headers="headers"
-          :items="products"
-          :search="search_code"
+          :items="admin"
+          :search="search"
           class="elevation-1"
         >
+          <template v-slot:[`item.photo`]="{ item }">
+            <img
+              width="100"
+              :src="require(`~/assets/profile-picture/${item.photo}`)"
+              :alt="item.photo"
+            />
+          </template>
           <template v-slot:[`item.id`]="{ item }">
             <v-icon
-              color="primary"
-              class="mr-2"
-              small
+              class="black--text h6 pl-1"
               @click="detailProduct(item)"
-            > mdi-eye</v-icon>
+              >mdi-information-outline
+            </v-icon>
+            
             <v-icon
               color="success"
               @click="editProduct(item)"
-              small
+              class="black--text h6 pl-1"
             >mdi-pencil</v-icon>
             <v-icon
               color="error"
+              class="h6 pl-1"
               @click="deleteProduct(item)"
-              small
-            >mdi-delete</v-icon>
+            >mdi-trash-can-outline</v-icon>
+            <v-icon
+              color="warning" 
+              class="h6 pl-1"
+              @click="downlaodProduct(item)"
+            >mdi-tray-arrow-down</v-icon>
             <v-icon
               color="success" 
-              small
+              class="h6 pl-1"
               @click="downlaodProduct(item)"
             >mdi-tray-arrow-down</v-icon>
           </template>
@@ -75,38 +88,44 @@
 </template>
 <script>
 export default {
-  name: "Produk",
+  name: "DaftarAdmin",
   layout: "administrator",
   data () {
     return {
-      search_code:"",
+      search:"",
       headers: [
         {
           text: 'NO',
           align: 'start',
           filterable: false,
           value: 'no',
-          class: "white--text blue" 
+          class: "white--text blue"
         },
-        { text: 'KODE PRODUKSi', value: 'code', class: "white--text blue"  },
-        { text: 'TANGGAL PEMBUATAN', value: 'date_created', filterable: false, class: "white--text blue" },
-        { text: 'TANGGAL RILIS', value: 'date_release', filterable: false, class: "white--text blue" },
-        { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue" }
+        { text: 'FOTO', value: 'photo', class: "white--text blue" },
+        { text: 'NAMA LENGKAP', value: 'fullname', class: "white--text blue" },
+        { text: 'EMAIL', value: 'email', filterable: false, class: "white--text blue"},
+        { text: 'USERNAME', value: 'username', filterable: false, class: "white--text blue"},
+        { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue"}
       ],
-      products: [
+      admin: [
         {
           no: 1,
-          code: "KODEPRODUKSI1",
-          date_created: "16 September 2021",
-          date_release: "28 September 2021",
+          photo: "ava1.png",
+          fullname: "Admin xxx",
+          email: "a@a.com",
+          username: "adminxx",
           id: 1,
         },
       ],
     }
   },
   methods:{
-    showProduct(id){},
-    editProduct(id){},
+    detailProduct(id){
+      this.$router.push({ name : "administrator-admin-detail-id", params : id})
+    },
+    editProduct(id){
+      this.$router.push({ name : "administrator-admin-id", params : id})
+    },
     deleteProduct(id){},
     downloadProduct(id){},
   }

@@ -8,7 +8,8 @@
           outlined
           small
           class="text-capitalize mb-3 mr-3"
-        ><v-icon dark> mdi-plus </v-icon>Operator</v-btn>
+          to="/administrator/operator-produk/add"
+        ><v-icon dark> mdi-plus </v-icon>Produk</v-btn>
         <v-btn
           color="warning"
           elevation="2"
@@ -29,8 +30,8 @@
       <v-col cols="12" sm="8" md="5">
         <v-text-field
             solo
-            v-model="search"
-            label="Cari Operator"
+            v-model="search_code"
+            label="Cari Kode Produksi atau Nama Operator"
             prepend-inner-icon="mdi-magnify"
             hide-details="auto"
           ></v-text-field>
@@ -41,33 +42,35 @@
         <v-data-table
           dense
           :headers="headers"
-          :items="operators"
+          :items="operatorProducts"
           :search="search"
           class="elevation-1"
         >
-          <template v-slot:[`item.photo`]="{ item }">
-            <img
-              width="100"
-              :src="require(`~/assets/profile-picture/${item.photo}`)"
-              :alt="item.photo"
-            />
-          </template>
           <template v-slot:[`item.id`]="{ item }">
             <v-icon
-              color="primary"
-              class="mr-2"
+              class="black--text h6 pl-1"
               @click="detailProduct(item)"
-            > mdi-eye</v-icon>
+              >mdi-information-outline
+            </v-icon>
+            
             <v-icon
               color="success"
               @click="editProduct(item)"
+              class="black--text h6 pl-1"
             >mdi-pencil</v-icon>
             <v-icon
               color="error"
+              class="h6 pl-1"
               @click="deleteProduct(item)"
-            >mdi-delete</v-icon>
+            >mdi-trash-can-outline</v-icon>
+            <v-icon
+              color="warning" 
+              class="h6 pl-1"
+              @click="downlaodProduct(item)"
+            >mdi-tray-arrow-down</v-icon>
             <v-icon
               color="success" 
+              class="h6 pl-1"
               @click="downlaodProduct(item)"
             >mdi-tray-arrow-down</v-icon>
           </template>
@@ -78,7 +81,7 @@
 </template>
 <script>
 export default {
-  name: "DaftarOperator",
+  name: "OperatorProduk",
   layout: "administrator",
   data () {
     return {
@@ -89,37 +92,33 @@ export default {
           align: 'start',
           filterable: false,
           value: 'no',
-          class: "white--text blue"
+          class: "white--text blue" 
         },
-        { text: 'FOTO', value: 'photo', class: "white--text blue" },
-        { text: 'NAMA LENGKAP', value: 'fullname', class: "white--text blue" },
-        { text: 'EMAIL', value: 'email', filterable: false, class: "white--text blue"},
-        { text: 'USERNAME', value: 'username', filterable: false, class: "white--text blue"},
-        { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue"}
+        { text: 'KODE PRODUKSi', value: 'code', class: "white--text blue"  },
+        { text: 'NAMA OPERATOR', value: 'date_created', class: "white--text blue"  },
+        { text: 'TANGGAL KEPEMILIKAN', value: 'date_release', filterable: false, class: "white--text blue" },
+        { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue" }
       ],
-      operators: [
+      operatorProducts: [
         {
           no: 1,
-          photo: "ava1.png",
-          fullname: "operator1 xxx",
-          email: "b@b.com",
-          username: "operatorxx",
+          code: "KODEPRODUKSI1",
+          date_created: "Operator A",
+          date_release: "28 September 2021",
           id: 1,
         },
       ],
     }
   },
   methods:{
-    showProduct(id){},
-    editProduct(id){},
+    detailProduct(id){
+      this.$router.push({ name : "administrator-operator-produk-detail-id", params : id})
+    },
+    editProduct(id){
+      this.$router.push({ name : "administrator-operator-produk-id", params : id})
+    },
     deleteProduct(id){},
     downloadProduct(id){},
   }
 };
 </script>
-<style>
-.blue {
-  background: #2196F3;
-}
-
-</style>

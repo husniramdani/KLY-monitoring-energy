@@ -3,9 +3,9 @@
     <v-navigation-drawer v-model="drawer" fixed app class="shadow">
       <img class="m-auto mt-8 mb-4 w-10" src="~assets/images/logo.webp" alt="logo" />
       <div
-        class="text-lg font-semibold py-2.5 px-2 text-center shadow mx-5 blue--text"
+        class="text-lg font-semibold py-2.5 px-2 text-center shadow mx-5 blue--text text-uppercase"
       >
-        Administrator
+        Akun Demo
       </div>
       <v-list dense>
         <v-list-item

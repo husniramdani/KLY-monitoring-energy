@@ -2,6 +2,7 @@ export const state = () => ({
   isAuthenticated: false,
   currentRole: "guest",
   userDetail: {},
+  isLoading: false
 })
 
 export const actions = {
@@ -28,6 +29,9 @@ export const mutations = {
     state.isAuthenticated = false;
     state.currentRole = "guest";
   },
+  setIsLoading(state, val) {
+    state.isLoading = val;
+  },
 }
 
 export const getters = {
@@ -39,5 +43,8 @@ export const getters = {
       isAuthenticated: state.isAuthenticated,
       currentRole: state.currentRole
     }
+  },
+  getIsLoading: (state) => {
+    return state.isLoading
   }
 }

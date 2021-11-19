@@ -12,7 +12,6 @@
             v-model="photo"
             outlined
             dense
-            disabled
             hide-details="auto"
             accept="image/*"
           ></v-file-input>
@@ -25,10 +24,9 @@
         <v-col cols="9">
           <v-text-field
             v-model="fullname"
+            :rules="rules.fullname"
             outlined
             dense
-            filled
-            disabled
             required
             hide-details="auto"
             color="primary"
@@ -37,7 +35,7 @@
       </v-row>
       <v-row align="center">
         <v-col cols="3">
-          <b class="text-uppercase">email</b>
+          <b class="text-uppercase">Email</b>
         </v-col>
         <v-col cols="9">
           <v-text-field
@@ -45,8 +43,6 @@
             :rules="rules.email"
             outlined
             dense
-            disabled
-            filled
             required
             hide-details="auto"
             color="primary"
@@ -63,8 +59,6 @@
             :rules="rules.username"
             outlined
             dense
-            filled
-            disabled
             required
             hide-details="auto"
             color="primary"
@@ -73,79 +67,78 @@
       </v-row>
       <v-row align="center">
         <v-col cols="3">
-          <b class="text-uppercase">Status</b>
+          <b class="text-uppercase">Password</b>
         </v-col>
         <v-col cols="9">
           <v-text-field
-            v-model="status"
+            v-model="password"
+            :rules="rules.fullname"
+            type="password"
             outlined
             dense
-            filled
             required
-            disabled
             hide-details="auto"
             color="primary"
           ></v-text-field>
         </v-col>
       </v-row>
       <v-row class="mt-5 d-flex" align="center">
-        <v-col  class="d-flex justify-end">
+        <v-col cols="12" class="d-flex justify-end">
           <v-btn
-            color="success"
+            color="error"
             elevation="2"
-            small
-            class="text-capitalize mb-3"
-          ><v-icon dark class="pr-1"> mdi-pencil </v-icon>Edit Data</v-btn>
+            class="text-capitalize mb-3 px-10 mr-5"
+            to="/administrator/operator"
+          ><v-icon dark class="pr-1"> mdi-cancel </v-icon> Batal</v-btn>
+          <v-btn
+            color="primary"
+            elevation="2"
+            class="text-capitalize mb-3 px-10"
+            @click="submitRequest"
+          ><v-icon dark class="pr-1"> mdi-folder-outline </v-icon>Simpan</v-btn>
         </v-col>
       </v-row>
     </v-card>
-    <v-row class="mt-5 d-flex" align="center">
-      <v-col cols="12" sm="6">
-        <v-btn
-          color="warning"
-          elevation="2"
-          outlined
-          small
-          class="text-capitalize mb-3 mr-3"
-        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download PDF</v-btn>
-        <v-btn
-          color="success"
-          elevation="2"
-          outlined
-          small
-          class="text-capitalize mb-3"
-        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn>
-      </v-col>
-    </v-row>
   </div>
 </template>
 <script>
 export default {
-  name: "Account",
+  name: "AdministratorAddOperator",
   layout: "administrator",
   data() {
     return {
       photo:"",
-      fullname:"Fullname here",
-      email:"email@here.com",
-      username:"usernamehere",
-      status:"statushere",
+      fullname:"",
+      username:"",
+      password:"",
+      email:"",
       rules: {
-        email: [
-          val => {
-            if (val.length > 0) {
-              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-              return pattern.test(val) || "Invalid e-mail.";
-            } else {
-              return true;
-            }
-          }
+        fullname: [
+          val => val.length <= 20 || `Max 20 characters!`,
         ],
         username: [
           val => val.includes(" ") == false || `No spaces allowed`,
         ],
+        email: [
+          val => {
+            if(val.length > 0) {
+              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              return pattern.test(val) || 'Invalid e-mail.';
+            } else {
+              return true
+            }
+          }
+        ],
+        password: [
+          val => val.length >= 6 || `Min 6 characters!`,
+        ],
       },
     }
+  },
+  methods:{
+      submitRequest(){
+          this.$router.push({ name : "administrator-operator"})
+      }
   }
 };
 </script>

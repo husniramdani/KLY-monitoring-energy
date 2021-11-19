@@ -21,15 +21,15 @@
                 </v-col>
                 <v-col cols="12" sm="8">
                   <v-select
-                  :items="locationList"
-                  v-model="location"
-                  item-text="name"
-                  item-value="id"
-                  outlined
-                  dense
-                  filled
-                  hide-details="auto"
-                ></v-select>
+                    :items="locationList"
+                    v-model="location"
+                    item-text="name"
+                    item-value="id"
+                    outlined
+                    dense
+                    filled
+                    hide-details="auto"
+                  ></v-select>
                 </v-col>
               </v-row>
               <v-row align="center" justify="center">

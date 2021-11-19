@@ -140,13 +140,13 @@ export default {
         {
           icon: "",
           title: "Daftar Admin",
-          to: "/administrator/daftar-admin",
+          to: "/administrator/admin",
           title_header:"Daftar Admin"
         },
         {
           icon: "",
           title: "Daftar Operator",
-          to: "/administrator/daftar-operator",
+          to: "/administrator/operator",
           title_header:"Daftar Operator"
         }
       ],

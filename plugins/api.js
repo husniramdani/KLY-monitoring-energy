@@ -1,4 +1,5 @@
-export default function ({ $axios, app }, inject) {
+// import store from "@/store";
+export default function ({ $axios, app, $store }, inject) {
   const api = $axios.create({
     headers: {
       common: {
@@ -23,6 +24,24 @@ export default function ({ $axios, app }, inject) {
   } else {
 
   }
+  api.interceptors.request.use(
+    response => {
+      app.store.commit("user/setIsLoading", true);
+      return response;
+    },
+    error => Promise.reject(error)
+  )
+  api.interceptors.response.use(
+    response => {
+      console.log(response)
+      app.store.commit("user/setIsLoading", false);
+      return response
+    },
+    async error => {
+      app.store.commit("user/setIsLoading", false);
+      Promise.reject(error)
+    }
+  )
 
   inject('api', api)
 }
