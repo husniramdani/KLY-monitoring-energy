@@ -12,7 +12,7 @@
       <div heigt="100%" class="border-left"></div>
       <v-col cols="auto">
         <p class="font-weight-light mb-0">Jumlah Baterai</p>
-        <b>9 Unit</b>
+        <b>{{value2}} Unit</b>
       </v-col>
     </v-row>
     <div v-else>
@@ -27,6 +27,7 @@ export default {
   props: {
     title: { type: String, required: true, default: "Title" },
     value: { type: String, required: true, default: "0" },
+    value2: { type: String, required: false, default: "0" },
     customize: { type: Boolean, required: false, default: false },
     unit: { type: String, required: true }
   }
