@@ -6,10 +6,7 @@
           <v-col cols="12" sm="6">
             <v-row align="center">
               <v-col cols="6" sm="3" class="font-weight-medium" >
-                <b>Pilih Lokasi</b> <v-icon
-                  class="black--text subtitle-1"
-                  >mdi-information-outline
-                </v-icon>
+                <span class="pr-2">Pilih Lokasi <InformationTooltip text="Masukkan lokasi anda"/></span>
               </v-col>
               <v-col cols="6" sm="6">
                 <v-select
@@ -40,13 +37,11 @@
                 <v-card elevation="1" class="mx-auto px-3 py-5" outlined>
                   <v-row>
                     <v-col cols="6" sm="6" class="font-weight-medium" >
-                      <b>Jenis Beban 1</b>
+                      <b>Jenis Beban {{index+1}}</b>
                     </v-col>
                     <v-col cols="6" sm="6">
                       <v-text-field
                         v-model="input.loadType"
-                        min="0"
-                        type="number"
                         outlined
                         filled
                         required
@@ -58,31 +53,25 @@
                   </v-row>
                   <v-row>
                     <v-col cols="6" sm="6" class="font-weight-medium" >
-                      <b>Sumber</b> <v-icon
-                        class="black--text subtitle-1"
-                        >mdi-information-outline
-                      </v-icon>
+                      <span class="pr-2">Sumber <InformationTooltip text="Pilih Panel Surya jika siang, pilih baterai jika malam"/></span>
                     </v-col>
                     <v-col cols="6" sm="6">
-                      <v-text-field
+                      <v-select
+                        width="100%"
+                        :items="sourceLoadList"
                         v-model="input.sourceLoad"
-                        min="0"
-                        type="number"
+                        item-text="name"
+                        item-value="id"
                         outlined
-                        filled
-                        required
                         dense
+                        filled
                         hide-details="auto"
-                        color="primary"
-                      ></v-text-field>
+                      ></v-select>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="6" sm="6" class="font-weight-medium" >
-                      <b>Daya (Watt)</b> <v-icon
-                        class="black--text subtitle-1"
-                        >mdi-information-outline
-                      </v-icon>
+                      <span class="pr-2">Daya (Watt) <InformationTooltip text="Daya yang dibutuhkan untuk jenis beban tersebut."/></span>
                     </v-col>
                     <v-col cols="6" sm="6">
                       <v-text-field
@@ -100,10 +89,7 @@
                   </v-row>
                   <v-row>
                     <v-col cols="6" sm="6" class="font-weight-medium" >
-                      <b>Durasi(Hour)</b> <v-icon
-                        class="black--text subtitle-1"
-                        >mdi-information-outline
-                      </v-icon>
+                      <span class="pr-2">Durasi(Hour) <InformationTooltip text="Durasi pemakaian per hari untuk jenis beban tersebut."/></span>
                     </v-col>
                     <v-col cols="6" sm="6">
                       <v-text-field
@@ -134,10 +120,7 @@
              <v-card elevation="1" class="mx-auto px-3 py-5" outlined>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Efiensi Baterai</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Efiensi Baterai(%) <InformationTooltip text="Efisiensi Baterai yang direkomendasikan adalah 95%."/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
@@ -155,10 +138,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>DOD Max</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">DOD Max(%) <InformationTooltip text="kondisi baterai yang boleh dipakai. DOD yang direkomendasikan : 20%."/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
@@ -176,10 +156,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Hari Otonom</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Hari Otonom <InformationTooltip text="Kondisi PV ketika tidak mendapat sinar matahari. Rekomendasi: 1 hari"/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
@@ -197,10 +174,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Tegangan Baterai</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Tegangan Baterai <InformationTooltip text="Tegangan pada sistem (Baterai)"/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-select
@@ -218,10 +192,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Kapasitas Baterai/Unit</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Kapasitas Baterai/Unit <InformationTooltip text="Nilai rekomendasi adalah 100, 150, dan 200."/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-select
@@ -239,10 +210,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Rasio Performa PV</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Rasio Performa PV (%) <InformationTooltip text="Rasio Performa PV yang direkomendasikan adalah 75%"/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
@@ -260,10 +228,7 @@
               </v-row>
               <v-row>
                 <v-col cols="6" sm="6" class="font-weight-medium" >
-                  <b>Rasio AC/DC</b> <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                  <span class="pr-2">Rasio AC/DC (%) <InformationTooltip text="Nilai rekomendasi untuk rasio DC/AC adalah 120%"/></span>
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
@@ -308,9 +273,10 @@
           </v-col>
         </v-row>
         <v-row justify="space-around" class="mt-10">
-          <CardCalculatorResult title="Rencana Beban harian" value="5330" unit="Watthour"/>
-          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" value="5610" :customize="false" unit="Watthour"/>
-          <CardCalculatorResult title="Kapasitas Baterai" value="59058" :customize="true" unit="Watthour"/>
+          <CardCalculatorResult title="Rencana Beban harian" :value="totalEnergy" unit="Watthour"/>
+          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" :value="calculateDEC" :customize="false" unit="Watthour"/>
+          <CardCalculatorResult title="Kapasitas Baterai" :value="calculateBatteryCapacity" 
+            :customize="true" unit="Watthour" :value2="calculateNumberOfBatteries" />
         </v-row>
         <v-row justify="space-around mt-4 mt-md-10">
           <CardCalculatorResult title="Kapasitas Inverter" value="2490" :customize="false" unit="Watt"/>
@@ -336,38 +302,112 @@ export default {
       location: null,
       loadComponent: [
         {
-          loadType:"",
-          sourceLoad:"",
-          power:"",
-          duration:"",
+          loadType:"Lampu",
+          sourceLoad:1,
+          power:"12",
+          duration:"10",
         }
       ],
-      batteryEfficiency:"",
-      maxDod:"",
-      otonomDay:"",
-      batteryVoltageList:[],
-      batteryVoltage:null,
-      batteryCapacityList:[],
-      batteryCapacity:null,
-      performanceRatio:"",
-      ratio:"",
+      batteryEfficiency:"95",
+      maxDod:"20",
+      otonomDay:"1",
+      batteryVoltageList:[
+        {id:12, name : "12 Volt", value:12},
+        {id:24, name : "24 Volt", value:24},
+        {id:48, name : "48 Volt", value: 48},
+      ],
+      batteryVoltage:24,
+      batteryCapacityList:[
+        { id:100, name: "100", value:100 },
+        { id:150, name: "150", value:150 },
+        { id:200, name: "200", value:200 },
+      ],
+      batteryCapacity:100,
+      performanceRatio:"75",
+      ratio:"120",
+      sourceLoadList:[
+        {
+          id : 1,
+          name : "Panel Surya"
+        },
+        {
+          id : 2,
+          name : "Baterai"
+        }
+      ],
+      calculateResult:{
+        totalEnergy : 0,
+        totalEnergyPV : 0,
+        totalEnergyBattery : 0
+      }
     };
+  },
+  computed:{
+    totalEnergy(){
+      return this.calculateResult.totalEnergy
+    },
+    totalEnergyPV(){
+      return this.calculateResult.totalEnergyPV
+    },
+    totalEnergyBattery(){
+      return this.calculateResult.totalEnergyBattery
+    },
+    batteryEfficiencyConvert(){
+      return this.batteryEfficiency/100
+    },
+    dodConvert(){
+      return this.maxDod/100
+    },
+    calculateDEC(){
+      console.log(this.totalEnergyPV)
+      console.log(this.totalEnergyBattery)
+      console.log(this.batteryEfficiencyConvert)
+      // DEC = Total Energi PV + (Total Energi Baterai / Efisiensi Baterai)
+      return (this.totalEnergyPV + (this.totalEnergyBattery/this.batteryEfficiencyConvert)).toFixed(2)
+    },
+    calculateBatteryCapacity(){
+      // Kapasitas Baterai= ((DEC-Total Energi PV)/(Efisiensi Baterai * DOD max))*Hari Otonom
+      return (((this.calculateDEC-this.totalEnergyPV)/(this.batteryEfficiencyConvert*this.dodConvert))*this.otonomDay).toFixed(2)
+    },
+    calculateNumberOfBatteries(){
+      // Jumlah Baterai (Unit) = (Kapasitas Baterai/Tegangan Baterai)/Kapasitas per unit Baterai
+      return ((this.calculateBatteryCapacity/this.batteryVoltage)/this.batteryCapacity).toFixed(2)
+    }
   },
   methods:{
     calculate(){
       this.result=1
       this.step=0
+      this.calculateDailyExpensePlan()
     },
     addLoad(){
       this.loadComponent.push({
         loadType:"",
-        sourceLoad:"",
+        sourceLoad:null,
         power:"",
         duration:"",
       })
     },
     removeLoad(index){
       this.loadComponent.splice(index, 1);
+    },
+    calculateDailyExpensePlan(){
+      this.calculateResult = {
+        totalEnergy: 0,
+        totalEnergyPV: 0,
+        totalEnergyBattery: 0,
+        
+      }
+      for(let data of this.loadComponent){
+        if(data.power != "" && data.duration != 0){
+          if(data.sourceLoad == 1){
+            this.calculateResult.totalEnergyPV += (data.power * data.duration)
+          } else if(data.sourceLoad == 2){
+            this.calculateResult.totalEnergyPV += (data.power * data.duration)
+          }
+        }
+      }
+      this.calculateResult.totalEnergy = this.calculateResult.totalEnergyPV + this.calculateResult.totalEnergyBattery
     }
   }
 };

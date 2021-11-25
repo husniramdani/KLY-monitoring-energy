@@ -30,6 +30,7 @@
       <v-col cols="12" sm="8" md="5">
         <v-text-field
             solo
+            dense
             v-model="search_code"
             label="Cari Kode Produksi atau Nama Operator"
             prepend-inner-icon="mdi-magnify"
@@ -112,6 +113,6 @@ export default {
     editProduct(id){},
     deleteProduct(id){},
     downloadProduct(id){},
-  }
+  },
 };
 </script>

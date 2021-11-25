@@ -13,31 +13,25 @@
           <v-col cols="12" sm="6">
             <v-card  elevation="1" class="mx-auto pa-5" outlined>
               <v-row align="center" justify="center">
-                <v-col cols="12" sm="4" class="font-weight-medium" >
-                  Pilih Lokasi <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                <v-col cols="12" sm="4" class="font-weight-medium d-flex" >
+                  <span class="pr-2">Pilih Lokasi <InformationTooltip text="Masukkan lokasi anda"/></span> 
                 </v-col>
                 <v-col cols="12" sm="8">
                   <v-select
-                  :items="locationList"
-                  v-model="location"
-                  item-text="name"
-                  item-value="id"
-                  outlined
-                  dense
-                  filled
-                  hide-details="auto"
-                ></v-select>
+                    :items="locationList"
+                    v-model="location"
+                    item-text="name"
+                    item-value="id"
+                    outlined
+                    dense
+                    filled
+                    hide-details="auto"
+                  ></v-select>
                 </v-col>
               </v-row>
               <v-row align="center" justify="center">
-                <v-col cols="12" sm="4" class="font-weight-medium" >
-                  Pilih AC/DC <v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                <v-col cols="12" sm="4" class="font-weight-medium d-flex" >
+                  <span class="pr-2">Pilih AC/DC <InformationTooltip text="Pilih AC (pakai inverter), pilih DC (tidak pakai inverter)"/></span>
                 </v-col>
                 <v-col cols="12" sm="8">
                   <v-select
@@ -53,11 +47,8 @@
                 </v-col>
               </v-row>
               <v-row align="center" justify="center">
-                <v-col cols="12" sm="4" class="font-weight-medium" >
-                  Total Enegri Bulanan (KWh)<v-icon
-                    class="black--text subtitle-1"
-                    >mdi-information-outline
-                  </v-icon>
+                <v-col cols="12" sm="4" class="font-weight-medium d-flex" >
+                  <span class="pr-2">Total Enegri Bulanan (KWh) <InformationTooltip text="Total energi yang dipakai dalam 1 bulan"/></span>
                 </v-col>
                 <v-col cols="12" sm="8">
                   <v-text-field
@@ -103,9 +94,10 @@
           </v-col>
         </v-row>
         <v-row justify="space-around" class="mt-10">
-          <CardCalculatorResult title="Rencana Beban harian" value="5330" unit="Watthour"/>
-          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" value="5610" :customize="false" unit="Watthour"/>
-          <CardCalculatorResult title="Kapasitas Baterai" value="59058" :customize="true" unit="Watthour"/>
+          <CardCalculatorResult title="Rencana Beban harian" :value="calculateDailyExpensePlan" unit="Watthour"/>
+          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" :value="calculateDEC" :customize="false" unit="Watthour"/>
+          <CardCalculatorResult title="Kapasitas Baterai" :value="calculateBatteryCapacity" 
+            :customize="true" unit="Watthour" :value2="calculateNumberOfBatteries"/>
         </v-row>
         <v-row justify="space-around mt-4 mt-md-10">
           <v-col cols="2" class="d-none d-sm-block"></v-col>
@@ -135,14 +127,15 @@
         </v-row>
         <v-row justify="space-around" class="mt-10">
           <v-col cols="2" class="d-none d-sm-block"></v-col>
-          <CardCalculatorResult title="Rencana Beban harian" value="5330" unit="Watthour"/>
-          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" value="5610" :customize="false" unit="Watthour"/>
+          <CardCalculatorResult title="Rencana Beban harian" :value="calculateDailyExpensePlan" unit="Watthour"/>
+          <CardCalculatorResult title="Daily Energy Comsumption (DEC)" :value="calculateDEC" :customize="false" unit="Watthour"/>
           <v-col cols="2" class="d-none d-sm-block"></v-col>
         </v-row>
         <v-row justify="space-around mt-4 mt-md-10">
           <v-col cols="2" class="d-none d-sm-block"></v-col>
           <CardCalculatorResult title="Kapasitas PV - tanpa Inverter" value="2490" :customize="false" unit="Wattpeak"/>
-          <CardCalculatorResult title="Kapasitas Baterai" value="59058" :customize="true" unit="Watthour"/>
+          <CardCalculatorResult title="Kapasitas Baterai" :value="calculateBatteryCapacity" 
+          :customize="true" unit="Watthour" :value2="calculateNumberOfBatteries"/>
           <v-col cols="2" class="d-none d-sm-block"></v-col>
         </v-row>
       </div>
@@ -170,6 +163,28 @@ export default {
       energyTotal:""
     };
   },
+  computed:{
+    conversionKwhToWh(){
+      // Total Energi Bulanan (KWh) => Total Energi Bulanan (Watthour)
+      // E(kWh) = P(W) × t(hr) / 1000
+      // Maka akan didapatkan = Total Energi Bulanan (Watthour atau Wh).
+      return (this.energyTotal/1000).toFixed(2)
+    },
+    calculateDailyExpensePlan(){
+      return (this.conversionKwhToWh/30).toFixed(2)
+    },
+    calculateDEC(){
+      return (this.calculateDailyExpensePlan/0.95).toFixed(2)
+    },
+    calculateBatteryCapacity(){
+      // Kapasitas Baterai = ((DEC-Rencana Beban Harian) / (Efisiensi Baterai*DOD Max)*Hari Otonom))
+      return ((this.calculateDEC-this.calculateDailyExpensePlan)/((0.95*0.2)*1)).toFixed(2)
+    },
+    calculateNumberOfBatteries(){
+      // Jumlah Baterai = (Kapasitas Baterai / Tegangan Baterai) / Kapasitas per unit baterai
+      return ((this.calculateBatteryCapacity/24)/100).toFixed(2)
+    }
+  },
   methods:{
     calculate(){
       console.log(this.electricType)
@@ -181,7 +196,7 @@ export default {
         this.result = 2
         this.step=2
       }
-    }
+    },
   }
 };
 </script>

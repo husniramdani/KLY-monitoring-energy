@@ -81,11 +81,15 @@
         </v-col>
       </v-row>
       <v-row class="mt-5 d-flex" align="center">
-        <v-col cols="12" class="d-flex justify-end">
+        <v-col class="d-flex justify-end py-0">
+          <!-- <v-icon>{{mdiAccount}}</v-icon><span class="danger--text">hello</span> -->
+        </v-col>
+        <v-col cols="12" class="d-flex justify-end pt-1">
           <v-btn
             color="primary"
             elevation="2"
             class="text-capitalize mb-3 px-10"
+            @click="submitRequest"
           >VERIFIKASI PRODUK</v-btn>
         </v-col>
       </v-row>
@@ -93,6 +97,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "OperatorProductAdd",
   layout: "operator",
@@ -109,6 +114,26 @@ export default {
     computedDateFormattedMomentjs() {
       return this.created_date ? this.$moment(this.created_date).format("DD-MM-YYYY") : "";
     },
+  },
+  methods:{
+    clearForm(){
+      tool_name=""
+      product_code=""
+      created_date=""
+      location_code=""
+    },
+    submitRequest(){
+      let payload = {
+        name:this.tool_name,
+	      code:this.product_code
+      }
+      this.$store.dispatch("product/addProduct", payload)
+      .then((response) => {
+        if(response.code == 200){
+          this.clearForm()
+        }
+      })
+    }
   }
 };
 </script>
