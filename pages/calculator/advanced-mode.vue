@@ -3,7 +3,7 @@
     <div class="max-w-landing m-auto">
       <div v-if="step == 1">
         <v-row align="center">
-          <v-col cols="12" sm="6">
+          <v-col cols="12" sm="8">
             <v-row align="center">
               <v-col cols="6" sm="3" class="font-weight-medium" >
                 <span class="pr-2">Pilih Lokasi <InformationTooltip text="Masukkan lokasi anda"/></span>
@@ -299,32 +299,32 @@ export default {
         { id: 1, name : "Yogyakarta" },
         { id: 2, name : "Sleman" },
       ],
-      location: null,
+      location: "",
       loadComponent: [
         {
-          loadType:"Lampu",
-          sourceLoad:1,
-          power:"12",
-          duration:"10",
+          loadType:"",
+          sourceLoad:"",
+          power:"",
+          duration:"",
         }
       ],
-      batteryEfficiency:"95",
-      maxDod:"20",
-      otonomDay:"1",
+      batteryEfficiency:"",
+      maxDod:"",
+      otonomDay:"",
       batteryVoltageList:[
         {id:12, name : "12 Volt", value:12},
         {id:24, name : "24 Volt", value:24},
         {id:48, name : "48 Volt", value: 48},
       ],
-      batteryVoltage:24,
+      batteryVoltage:"",
       batteryCapacityList:[
         { id:100, name: "100", value:100 },
         { id:150, name: "150", value:150 },
         { id:200, name: "200", value:200 },
       ],
-      batteryCapacity:100,
-      performanceRatio:"75",
-      ratio:"120",
+      batteryCapacity:"",
+      performanceRatio:"",
+      ratio:"",
       sourceLoadList:[
         {
           id : 1,
