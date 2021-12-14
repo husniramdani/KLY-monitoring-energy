@@ -9,7 +9,7 @@ export const actions = {
   async getUserDetail({ commit }) {
     await this.$api.$get("/api/v1/user/profile")
       .then((res) => {
-        commit('setUserDetail', res.data)
+        commit('setUserDetail', res.user)
       })
   },
   async onUserLogout({ commit }) {

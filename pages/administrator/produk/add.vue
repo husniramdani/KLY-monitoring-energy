@@ -1,8 +1,21 @@
 <template>
   <div>
-    <v-card 
-      elevation="1"
-      class="pa-4">
+    <v-card elevation="1" class="pa-4">
+      <v-row align="center">
+        <v-col cols="3">
+          <b class="text-uppercase">Nama Produk</b>
+        </v-col>
+        <v-col cols="9">
+          <v-text-field
+            v-model="product_name"
+            outlined
+            dense
+            required
+            hide-details="auto"
+            color="primary"
+          ></v-text-field>
+        </v-col>
+      </v-row>
       <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Kode Produksi</b>
@@ -18,7 +31,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="center">
+      <!-- <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Waktu Pembuatan</b>
         </v-col>
@@ -157,7 +170,7 @@
             ></v-date-picker>
           </v-menu>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row class="mt-5 d-flex" align="center">
         <v-col cols="12" class="d-flex justify-end pt-1">
           <v-btn
@@ -165,61 +178,65 @@
             elevation="2"
             class="text-capitalize mb-3 px-10 mr-5"
             to="/administrator/produk"
-          ><v-icon dark class="pr-1"> mdi-cancel </v-icon> Batal</v-btn>
+            ><v-icon dark class="pr-1"> mdi-cancel </v-icon> Batal</v-btn
+          >
           <v-btn
             color="primary"
             elevation="2"
             class="text-capitalize mb-3 px-10"
             @click="submitRequest"
-          ><v-icon dark class="pr-1"> mdi-folder-outline </v-icon>Simpan</v-btn>
+            ><v-icon dark class="pr-1"> mdi-folder-outline </v-icon
+            >Simpan</v-btn
+          >
         </v-col>
       </v-row>
     </v-card>
   </div>
 </template>
 <script>
-
 export default {
   name: "AdministratorAddProduct",
   layout: "operator",
   data() {
     return {
-      calender_release_date:false,
-      calender_created_date : false,
-      created_date:"",
-      release_date:"",
-      product_code:"",
-      time_created_model:false,
+      product_name: "",
+      product_code: "",
+      calender_release_date: false,
+      calender_created_date: false,
+      created_date: "",
+      release_date: "",
+      time_created_model: false,
       time_created: null,
-      time_release_model:false,
+      time_release_model: false,
       time_release: null,
-    }
+    };
   },
-  computed:{
+  computed: {
     computedCreatedDateFormat() {
-      return this.created_date ? this.$moment(this.created_date).format("DD-MM-YYYY") : "";
+      return this.created_date
+        ? this.$moment(this.created_date).format("DD-MM-YYYY")
+        : "";
     },
     computedReleaseDateFormat() {
-      return this.release_date ? this.$moment(this.release_date).format("DD-MM-YYYY") : "";
+      return this.release_date
+        ? this.$moment(this.release_date).format("DD-MM-YYYY")
+        : "";
     },
   },
-  methods:{
-    cancel(){
-      
+  methods: {
+    cancel() {},
+    submitRequest() {
+      let payload = {
+        name: this.product_name,
+        code: this.product_code,
+      };
+      this.$store.dispatch("product/addProduct", payload).then((res) => {
+        if (res.code == 200) {
+          this.clearForm();
+        }
+      });
+      this.$router.push({ name: "administrator-produk" });
     },
-    submitRequest(){
-      // let payload = {
-      //   name:this.tool_name,
-	    //   code:this.product_code
-      // }
-      // this.$store.dispatch("product/addProduct", payload)
-      // .then((response) => {
-      //   if(response.code == 200){
-      //     this.clearForm()
-      //   }
-      // })
-      this.$router.push({ name : "administrator-produk"})
-    }
-  }
+  },
 };
 </script>
