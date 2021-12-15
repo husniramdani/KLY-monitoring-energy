@@ -129,7 +129,7 @@ export default {
   methods: {
     detailProduct(data) {
       this.$router.push({
-        name: "operator-monitoring-plts-id",
+        name: "operator-monitoring-plts-table-id",
         params: data,
         query: {
           code: data.code,

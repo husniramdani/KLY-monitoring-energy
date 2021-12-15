@@ -34,8 +34,8 @@ export const actions = {
   },
   async getProductDetails({ commit }, query) {
     const params = {
-      code: "ABC213123",
-      start_dt: "2020-12-04 00:00:00",
+      code: query.code, //ABC213123
+      start_dt: query.created_at, //2020-12-04 00:00:00
       end_dt: this.$moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
     }
     await this.$api.$get("/api/v1/data/environment", { params })
