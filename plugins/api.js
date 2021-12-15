@@ -33,7 +33,6 @@ export default function ({ $axios, app, $store }, inject) {
   )
   api.interceptors.response.use(
     response => {
-      console.log(response)
       app.store.commit("user/setIsLoading", false);
       return response
     },

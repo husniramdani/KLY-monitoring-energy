@@ -230,10 +230,8 @@ export default {
         name: this.product_name,
         code: this.product_code,
       };
-      this.$store.dispatch("product/addProduct", payload).then((res) => {
-        if (res.code == 200) {
-          this.clearForm();
-        }
+      this.$store.dispatch("product/addProduct", payload).then(async (res) => {
+        await this.$store.dispatch("product/getProducts");
       });
       this.$router.push({ name: "administrator-produk" });
     },

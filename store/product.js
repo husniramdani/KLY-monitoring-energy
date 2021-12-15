@@ -13,7 +13,7 @@ export const actions = {
   async addProduct({ commit }, payload) {
     await this.$api.$post("/api/v1/product", payload)
       .then((res) => {
-        commit('setProducts', res.data.reverse())
+        return res;
       })
   },
   async editProduct({ commit }, payload) {
