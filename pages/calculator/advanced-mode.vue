@@ -383,15 +383,15 @@ export default {
     inverterCapacity(){
       // Kapasitas Inverter= (DEC:Rasio Performa PV) / (PSH*PSH Correction)
       // Kapasitas Inverter= (DEC:75%) / (PSH*PSH Correction)
-      return ((this.calculateDEC/(this.performanceRatioPVConvert)) / (this.location.psh/CORRECTION_PSH)).toFixed(2)
+      return ((this.calculateDEC/(this.performanceRatioPVConvert)) / (this.location.psh*CORRECTION_PSH)).toFixed(2)
     },
     PVCapacityWithInverter(){
-      // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
-      return (this.inverterCapacity/this.ratioAcDcConvert).toFixed(2)
+      // Kapasitas PV (Wattpeak) = Kapasitas Inverter PV (Wattpeak) * Rasio DC/AC (%)
+      return (this.inverterCapacity*this.ratioAcDcConvert).toFixed(2)
     },
     PVCapacityWithoutInverter(){
-      // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
-      return ((this.calculateDEC/this.performanceRatioPVConvert)/(this.location.psh/CORRECTION_PSH)).toFixed(2)
+      // Kapasitas PV non Inverter (Wattpeak)= (DEC / Rasio Performa PV) / (PSH * PSH Correction).
+      return ((this.calculateDEC/this.performanceRatioPVConvert)/(this.location.psh*CORRECTION_PSH)).toFixed(2)
     },
     validate(){
       let data = false
