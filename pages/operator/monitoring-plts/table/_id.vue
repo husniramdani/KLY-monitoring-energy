@@ -10,9 +10,9 @@
       ></v-progress-circular>
     </v-overlay>
     <v-row>
-      <v-col cols="12" class="flex">
+      <v-col class="d-flex justify-end">
         <downloadexcel
-          class="btn"
+          class="btn mb-3 mr-3"
           :data="getProductDetails"
           :fields="json_fields"
           :before-generate="startDownload"
@@ -25,9 +25,25 @@
             outlined
             small
             class="text-capitalize mb-3"
-            ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn
           >
+            <v-icon dark> mdi-tray-arrow-down </v-icon>
+            Download Excel
+          </v-btn>
         </downloadexcel>
+        <v-btn
+          color="primary"
+          class="text-capitalize mb-3 mr-3"
+          small
+          @click="showGraphData"
+          ><v-icon dark> mdi-plus </v-icon>Data Grafik</v-btn
+        >
+        <v-btn
+          :disabled="table_data"
+          color="primary"
+          class="text-capitalize mb-3 mr-3"
+          small
+          ><v-icon dark> mdi-plus </v-icon>Data Tabel</v-btn
+        >
       </v-col>
     </v-row>
     <!-- <v-row class="mt-0">
@@ -49,18 +65,6 @@
           :search="search_code"
           class="elevation-1"
         >
-          <template v-slot:[`item.id`]="{ item }">
-            <v-btn
-              color="accent"
-              elevation="2"
-              outlined
-              small
-              class="text-capitalize"
-              @click="detailProduct(item)"
-            >
-              Detail
-            </v-btn>
-          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -72,7 +76,7 @@ import { mapGetters } from "vuex";
 import downloadexcel from "vue-json-excel";
 
 export default {
-  name: "OperatorDetailMonitoringPlts",
+  name: "OperatorDetailMonitoringPltsTable",
   layout: "operator",
   components: {
     downloadexcel,
@@ -85,75 +89,71 @@ export default {
     return {
       isLoading: false,
       search_code: "",
+      table_data: true,
       headers: [
         {
           text: "LUX-Intensitas Cahaya (Lux)",
           value: "lux_intensitas_cahaya",
           class: "white--text blue",
-          align: "center"
+          align: "center",
         },
         {
           text: "IRR-Intensitas Irradian Cahaya (W/m2)",
           value: "irr_intensitas_irradian_cahaya",
           class: "white--text blue",
-          align: "center"
+          align: "center",
         },
         {
           text: "SUD-Suhu Udara (C)",
           value: "sud_suhu_udara",
           filterable: false,
           class: "white--text blue",
-          align: "center"
+          align: "center",
         },
         {
           text: "KUD-Kelembapan Udara (%RH)",
           value: "kud_kelembapan_udara",
           filterable: false,
           class: "white--text blue",
-          align: "center"
+          align: "center",
         },
         {
           text: "Tanggal",
           value: "date",
           filterable: false,
           class: "white--text blue",
-          align: "center"
+          align: "center",
         },
       ],
       json_fields: {
         "LUX-Intensitas Cahaya (Lux)": "lux_intensitas_cahaya",
-        "IRR-Intensitas Irradian Cahaya (W/m2)": "irr_intensitas_irradian_cahaya",
+        "IRR-Intensitas Irradian Cahaya (W/m2)":
+          "irr_intensitas_irradian_cahaya",
         "SUD-Suhu Udara (C)": "sud_suhu_udara",
         "KUD-Kelembapan Udara (%RH)": "kud_kelembapan_udara",
-        "Tanggal": "date",
+        Tanggal: "date",
       },
     };
   },
   methods: {
-    detailProduct(data) {
-      this.$router.push({
-        name: "operator-monitoring-plts-id",
-        params: data,
-        query: {
-          code: data.code,
-          created_at: data.created_at,
-        },
-      });
-    },
     startDownload() {
       this.isLoading = true;
     },
     finishDownload() {
       this.isLoading = false;
     },
+    showGraphData() {
+      const { params, query } = this.$route;
+      this.$router.push({
+        name: "operator-monitoring-plts-grafik-id",
+        params,
+        query,
+      });
+    },
   },
   computed: {
     ...mapGetters("product", ["getProducts", "getProductDetails"]),
     ...mapGetters("user", ["getUserDetail"]),
-  },
-  async mounted() {
-    // const id = this?.getUserDetail?.id || null;
-    // await this.$store.dispatch("product/getProductsByUserId", id);
   },
 };
 </script>
