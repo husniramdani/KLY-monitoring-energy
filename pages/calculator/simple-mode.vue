@@ -146,7 +146,7 @@
 <script>
 const RATIO_PV_PERFORMANCE = 0.75
 const BATTERY_EFFICIENCY = 0.95
-const CORRECTION_PSH = 3
+const CORRECTION_PSH = 0.7
 const DOD_MAX = 0.2
 const OTONOM_DAY = 1
 const DAY_IN_A_MONTH = 30
