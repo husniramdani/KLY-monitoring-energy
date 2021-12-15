@@ -21,6 +21,9 @@
 export default {
   name: "Dashboard",
   layout: "operator",
+  async fetch({ store }) {
+    await store.dispatch("user/getUserDetail");
+  },
   data(){
     return {
       operatorDashboard : [

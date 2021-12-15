@@ -196,7 +196,7 @@
 <script>
 export default {
   name: "AdministratorEditProduct",
-  layout: "operator",
+  layout: "administrator",
   data() {
     const { code, name, id } = this.$route.params;
     return {

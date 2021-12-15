@@ -288,7 +288,7 @@
   </v-container>
 </template>
 <script>
-const CORRECTION_PSH = 3
+const CORRECTION_PSH = 0.7
 export default {
   name: "SimpleMode",
   layout: "landing",

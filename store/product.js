@@ -10,10 +10,18 @@ export const actions = {
         commit('setProducts', res.data.reverse())
       })
   },
+  async getProductsByUserId({ commit }, id) {
+    await this.$api.$get(`/api/v1/product/${id}`)
+      .then((res) => {
+        if(res.data){
+          commit('setProducts', res.data.reverse())
+        }
+      })
+  },
   async addProduct({ commit }, payload) {
     await this.$api.$post("/api/v1/product", payload)
       .then((res) => {
-        commit('setProducts', res.data.reverse())
+        return res;
       })
   },
   async editProduct({ commit }, payload) {
