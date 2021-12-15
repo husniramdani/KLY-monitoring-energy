@@ -177,7 +177,7 @@
             color="error"
             elevation="2"
             class="text-capitalize mb-3 px-10 mr-5"
-            to="/administrator/produk"
+            to="/operator/monitoring-product"
             ><v-icon dark class="pr-1"> mdi-cancel </v-icon> Batal</v-btn
           >
           <v-btn
@@ -193,14 +193,18 @@
     </v-card>
   </div>
 </template>
+
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: "AdministratorAddProduct",
-  layout: "administrator",
+  name: "OperatorEditProduct",
+  layout: "operator",
   data() {
+    const { code, name, id } = this.$route.params;
     return {
-      product_name: "",
-      product_code: "",
+      product_id: id ? id : null,
+      product_name: name ? name : "-",
+      product_code: code ? code : "-",
       calender_release_date: false,
       calender_created_date: false,
       created_date: "",
@@ -222,18 +226,23 @@ export default {
         ? this.$moment(this.release_date).format("DD-MM-YYYY")
         : "";
     },
+    ...mapGetters("user", ["getUserDetail"]),
   },
   methods: {
     cancel() {},
     submitRequest() {
       let payload = {
+        id: this.product_id,
         name: this.product_name,
         code: this.product_code,
       };
-      this.$store.dispatch("product/addProduct", payload).then(async (res) => {
-        await this.$store.dispatch("product/getProducts");
+      this.$store.dispatch("product/editProduct", payload).then(async (res) => {
+        const id = this?.getUserDetail?.id || null;
+        await this.$store.dispatch("product/getProductsByUserId", id);
       });
-      this.$router.push({ name: "administrator-produk" });
+      this.$router.push({
+        path: "/operator/monitoring-product",
+      });
     },
   },
 };

@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{isLoading}}
     <v-overlay :value="isLoading" :z-index="100">
       <v-progress-circular
         :value="80"
@@ -11,7 +10,7 @@
       ></v-progress-circular>
     </v-overlay>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" class="flex">
         <v-btn
           color="accent"
           elevation="2"
