@@ -13,11 +13,11 @@
                 :items="locationList"
                 v-model="location"
                 item-text="name"
-                item-value="id"
                 outlined
                 dense
                 filled
                 hide-details="auto"
+                return-object
               ></v-select>
               </v-col>
             </v-row>
@@ -214,7 +214,7 @@
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
-                    v-model="performanceRatio"
+                    v-model="performanceRatioPV"
                     min="0"
                     type="number"
                     outlined
@@ -232,7 +232,7 @@
                 </v-col>
                 <v-col cols="6" sm="6">
                   <v-text-field
-                    v-model="ratio"
+                    v-model="ratioAC_DC"
                     min="0"
                     type="number"
                     outlined
@@ -279,15 +279,16 @@
             :customize="true" unit="Watthour" :value2="calculateNumberOfBatteries" />
         </v-row>
         <v-row justify="space-around mt-4 mt-md-10">
-          <CardCalculatorResult title="Kapasitas Inverter" value="2490" :customize="false" unit="Watt"/>
-          <CardCalculatorResult title="Kapasitas PV - dengan Inverter" value="2990" :customize="false" unit="Wattpeak"/>
-          <CardCalculatorResult title="Kapasitas PV - tanpa Inverter" value="2990" :customize="false" unit="Wattpeak"/>
+          <CardCalculatorResult title="Kapasitas Inverter" :value="inverterCapacity" :customize="false" unit="Watt"/>
+          <CardCalculatorResult title="Kapasitas PV - dengan Inverter" :value="PVCapacityWithInverter" :customize="false" unit="Wattpeak"/>
+          <CardCalculatorResult title="Kapasitas PV - tanpa Inverter" :value="PVCapacityWithoutInverter" :customize="false" unit="Wattpeak"/>
         </v-row>
       </div>
     </div>
   </v-container>
 </template>
 <script>
+const CORRECTION_PSH = 3
 export default {
   name: "SimpleMode",
   layout: "landing",
@@ -296,10 +297,13 @@ export default {
       step:1,
       result:0,
       locationList: [
-        { id: 1, name : "Yogyakarta" },
-        { id: 2, name : "Sleman" },
+        { id: 1, name : "Yogyakarta", psh: 5.0 },
+        { id: 2, name : "Bantul", psh: 5.1 },
+        { id: 3, name : "Sleman", psh: 4.5 },
+        { id: 4, name : "Gunung Kidul", psh: 5.1 },
+        { id: 5, name : "Kulon Progo", psh: 4.8 },
       ],
-      location: "",
+      location: null,
       loadComponent: [
         {
           loadType:"",
@@ -323,8 +327,8 @@ export default {
         { id:200, name: "200", value:200 },
       ],
       batteryCapacity:"",
-      performanceRatio:"",
-      ratio:"",
+      performanceRatioPV:"",
+      ratioAC_DC:"",
       sourceLoadList:[
         {
           id : 1,
@@ -358,10 +362,13 @@ export default {
     dodConvert(){
       return this.maxDod/100
     },
+    ratioAcDcConvert(){
+      return this.ratioAC_DC/100
+    },
+    performanceRatioPVConvert(){
+      return this.performanceRatioPV/100
+    },
     calculateDEC(){
-      console.log(this.totalEnergyPV)
-      console.log(this.totalEnergyBattery)
-      console.log(this.batteryEfficiencyConvert)
       // DEC = Total Energi PV + (Total Energi Baterai / Efisiensi Baterai)
       return (this.totalEnergyPV + (this.totalEnergyBattery/this.batteryEfficiencyConvert)).toFixed(2)
     },
@@ -372,10 +379,44 @@ export default {
     calculateNumberOfBatteries(){
       // Jumlah Baterai (Unit) = (Kapasitas Baterai/Tegangan Baterai)/Kapasitas per unit Baterai
       return ((this.calculateBatteryCapacity/this.batteryVoltage)/this.batteryCapacity).toFixed(2)
+    },
+    inverterCapacity(){
+      // Kapasitas Inverter= (DEC:Rasio Performa PV) / (PSH*PSH Correction)
+      // Kapasitas Inverter= (DEC:75%) / (PSH*PSH Correction)
+      return ((this.calculateDEC/(this.performanceRatioPVConvert)) / (this.location.psh/CORRECTION_PSH)).toFixed(2)
+    },
+    PVCapacityWithInverter(){
+      // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
+      return (this.inverterCapacity/this.ratioAcDcConvert).toFixed(2)
+    },
+    PVCapacityWithoutInverter(){
+      // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
+      return ((this.calculateDEC/this.performanceRatioPVConvert)/(this.location.psh/CORRECTION_PSH)).toFixed(2)
+    },
+    validate(){
+      let data = false
+      if(this.location == null || this.batteryEfficiency=="" || this.maxDod==""
+      || this.otonomDay=="" || this.batteryVoltage=="" || this.batteryCapacity==""
+      || this.performanceRatioPV=="" || this.ratioAC_DC==""){
+        data = true
+      }
+      return data
     }
   },
   methods:{
     calculate(){
+      console.log(this.validate, this.location)
+      if(!this.validate){
+        for(let data of this.loadComponent){
+          console.log(data.loadType=="" || data.sourceLoad=="" || this.power=="" || this.duration=="")
+          console.log(data.loadType,data.sourceLoad,data.power,data.duration)
+          if(data.loadType=="" || data.sourceLoad=="" || data.power=="" || data.duration==""){
+            return
+          }
+        }
+      } else {
+        return
+      }
       this.result=1
       this.step=0
       this.calculateDailyExpensePlan()
@@ -403,7 +444,7 @@ export default {
           if(data.sourceLoad == 1){
             this.calculateResult.totalEnergyPV += (data.power * data.duration)
           } else if(data.sourceLoad == 2){
-            this.calculateResult.totalEnergyPV += (data.power * data.duration)
+            this.calculateResult.totalEnergyBattery += (data.power * data.duration)
           }
         }
       }
