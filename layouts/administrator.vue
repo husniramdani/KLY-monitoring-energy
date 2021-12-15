@@ -1,5 +1,14 @@
 <template>
   <v-app>
+    <v-overlay :value="getIsLoading" :z-index="100">
+      <v-progress-circular
+        :value="80"
+        :size="70"
+        :width="7"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+    </v-overlay>
     <v-navigation-drawer v-model="drawer" fixed app class="shadow relative">
       <img class="m-auto mt-8 mb-4 w-10" src="~assets/images/logo.webp" alt="logo" />
       <div
@@ -178,7 +187,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("user", ["getUserAuth"]),
+    ...mapGetters("user", ["getUserAuth", "getIsLoading"]),
   },
   methods:{
     changeTitle(title){
