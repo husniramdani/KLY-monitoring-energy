@@ -11,22 +11,13 @@
     </v-overlay>
     <v-row>
       <v-col cols="12" class="flex">
-        <v-btn
-          color="accent"
-          elevation="2"
-          outlined
-          small
-          class="text-capitalize mb-3 mr-3"
-          to="/operator/monitoring-product/add"
-          ><v-icon dark> mdi-plus </v-icon>Produk</v-btn
-        >
         <downloadexcel
           class="btn"
-          :data="getProducts"
+          :data="getProductDetails"
           :fields="json_fields"
           :before-generate="startDownload"
           :before-finish="finishDownload"
-          name="Data-Products.xls"
+          name="Data-Detail-Products.xls"
         >
           <v-btn
             color="success"
@@ -39,7 +30,7 @@
         </downloadexcel>
       </v-col>
     </v-row>
-    <v-row class="mt-0">
+    <!-- <v-row class="mt-0">
       <v-col cols="12" sm="8" md="5">
         <v-text-field
           solo
@@ -49,29 +40,26 @@
           hide-details="auto"
         ></v-text-field>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col>
         <v-data-table
           :headers="headers"
-          :items="getProducts"
+          :items="getProductDetails"
           :search="search_code"
           class="elevation-1"
         >
           <template v-slot:[`item.id`]="{ item }">
-            <v-icon class="black--text h6 pl-1" @click="detailProduct(item)"
-              >mdi-information-outline
-            </v-icon>
-
-            <v-icon
-              color="success"
-              @click="editProduct(item)"
-              class="black--text h6 pl-1"
-              >mdi-pencil</v-icon
+            <v-btn
+              color="accent"
+              elevation="2"
+              outlined
+              small
+              class="text-capitalize"
+              @click="detailProduct(item)"
             >
-            <v-icon color="error" class="h6 pl-1" @click="deleteProduct(item)"
-              >mdi-trash-can-outline</v-icon
-            >
+              Detail
+            </v-btn>
           </template>
         </v-data-table>
       </v-col>
@@ -84,68 +72,74 @@ import { mapGetters } from "vuex";
 import downloadexcel from "vue-json-excel";
 
 export default {
-  name: "Produk",
+  name: "OperatorDetailMonitoringPlts",
   layout: "operator",
   components: {
     downloadexcel,
+  },
+  async fetch({ store, route }) {
+    const { query } = route;
+    await store.dispatch("product/getProductDetails", query);
   },
   data() {
     return {
       isLoading: false,
       search_code: "",
       headers: [
-        { text: "KODE PRODUKSi", value: "code", class: "white--text blue" },
-        { text: "NAMA PRODUK", value: "name", class: "white--text blue" },
         {
-          text: "TANGGAL PEMBUATAN",
-          value: "created_at",
-          filterable: false,
+          text: "LUX-Intensitas Cahaya (Lux)",
+          value: "lux_intensitas_cahaya",
           class: "white--text blue",
+          align: "center"
         },
         {
-          text: "TANGGAL RILIS",
-          value: "created_at",
-          filterable: false,
+          text: "IRR-Intensitas Irradian Cahaya (W/m2)",
+          value: "irr_intensitas_irradian_cahaya",
           class: "white--text blue",
+          align: "center"
         },
         {
-          text: "AKSI",
-          value: "id",
+          text: "SUD-Suhu Udara (C)",
+          value: "sud_suhu_udara",
           filterable: false,
           class: "white--text blue",
-          align: 'center',
+          align: "center"
+        },
+        {
+          text: "KUD-Kelembapan Udara (%RH)",
+          value: "kud_kelembapan_udara",
+          filterable: false,
+          class: "white--text blue",
+          align: "center"
+        },
+        {
+          text: "Tanggal",
+          value: "date",
+          filterable: false,
+          class: "white--text blue",
+          align: "center"
         },
       ],
       json_fields: {
-        "Kode Produksi": {
-          field: "code",
-          callback: (value) => {
-            return value;
-          },
-        },
-        "Nama Produk": "name",
-        "Tanggal Pembuatan": "created_at",
-        "Tanggal Rilis": "created_at",
+        "LUX-Intensitas Cahaya (Lux)": "lux_intensitas_cahaya",
+        "IRR-Intensitas Irradian Cahaya (W/m2)": "irr_intensitas_irradian_cahaya",
+        "SUD-Suhu Udara (C)": "sud_suhu_udara",
+        "KUD-Kelembapan Udara (%RH)": "kud_kelembapan_udara",
+        "Tanggal": "date",
       },
     };
   },
   methods: {
-    detailProduct(id) {
+    detailProduct(data) {
       this.$router.push({
-        name: "operator-monitoring-product-detail-id",
-        params: id,
+        name: "operator-monitoring-plts-id",
+        params: data,
+        query: {
+          code: data.code,
+          created_at: data.created_at,
+        },
       });
     },
-    editProduct(id) {
-      this.$router.push({ name: "operator-monitoring-product-id", params: id });
-    },
-    async deleteProduct(id) {
-      const user_id = this?.getUserDetail?.id || null;
-      await this.$api.$delete(`/api/v1/product/${id.id}`).then(async (res) => {
-        await this.$store.dispatch("product/getProductsByUserId", user_id);
-      });
-    },
-    downloadProduct(id) {},
     startDownload() {
       this.isLoading = true;
     },
@@ -154,12 +148,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("product", ["getProducts"]),
+    ...mapGetters("product", ["getProducts", "getProductDetails"]),
     ...mapGetters("user", ["getUserDetail"]),
   },
   async mounted() {
-    const id = this?.getUserDetail?.id || null;
-    await this.$store.dispatch("product/getProductsByUserId", id);
+    // const id = this?.getUserDetail?.id || null;
+    // await this.$store.dispatch("product/getProductsByUserId", id);
   },
 };
 </script>

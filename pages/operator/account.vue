@@ -86,7 +86,7 @@
           ></v-text-field>
         </v-col>
       </v-row> -->
-      <v-row class="mt-5 d-flex" align="center">
+      <!-- <v-row class="mt-5 d-flex" align="center">
         <v-col class="d-flex justify-end">
           <v-btn
             color="success"
@@ -96,9 +96,9 @@
             ><v-icon dark class="pr-1"> mdi-pencil </v-icon>Edit Data</v-btn
           >
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-card>
-    <v-row class="mt-5 d-flex" align="center">
+    <!-- <v-row class="mt-5 d-flex" align="center">
       <v-col cols="12" sm="6">
         <v-btn
           color="warning"
@@ -117,7 +117,7 @@
           ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn
         >
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 
@@ -127,7 +127,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Account",
   layout: "operator",
-  async fetch({ store, route }) {
+  async fetch({ store }) {
     await store.dispatch("user/getUserDetail");
   },
   data() {

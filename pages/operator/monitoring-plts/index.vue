@@ -11,7 +11,7 @@
     </v-overlay>
     <v-row>
       <v-col cols="12" class="flex">
-        <v-btn
+        <!-- <v-btn
           color="accent"
           elevation="2"
           outlined
@@ -36,7 +36,7 @@
             class="text-capitalize mb-3"
             ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn
           >
-        </downloadexcel>
+        </downloadexcel> -->
       </v-col>
     </v-row>
     <v-row class="mt-0">
@@ -59,19 +59,16 @@
           class="elevation-1"
         >
           <template v-slot:[`item.id`]="{ item }">
-            <v-icon class="black--text h6 pl-1" @click="detailProduct(item)"
-              >mdi-information-outline
-            </v-icon>
-
-            <v-icon
-              color="success"
-              @click="editProduct(item)"
-              class="black--text h6 pl-1"
-              >mdi-pencil</v-icon
+            <v-btn
+              color="accent"
+              elevation="2"
+              outlined
+              small
+              class="text-capitalize"
+              @click="detailProduct(item)"
             >
-            <v-icon color="error" class="h6 pl-1" @click="deleteProduct(item)"
-              >mdi-trash-can-outline</v-icon
-            >
+              Detail
+            </v-btn>
           </template>
         </v-data-table>
       </v-col>
@@ -84,7 +81,7 @@ import { mapGetters } from "vuex";
 import downloadexcel from "vue-json-excel";
 
 export default {
-  name: "Produk",
+  name: "OperatorMonitoringPlts",
   layout: "operator",
   components: {
     downloadexcel,
@@ -130,27 +127,15 @@ export default {
     };
   },
   methods: {
-    detailProduct(id) {
+    detailProduct(data) {
       this.$router.push({
-        name: "operator-monitoring-product-detail-id",
-        params: id,
+        name: "operator-monitoring-plts-id",
+        params: data,
+        query: {
+          code: data.code,
+          created_at: data.created_at
+        }
       });
-    },
-    editProduct(id) {
-      this.$router.push({ name: "operator-monitoring-product-id", params: id });
-    },
-    async deleteProduct(id) {
-      const user_id = this?.getUserDetail?.id || null;
-      await this.$api.$delete(`/api/v1/product/${id.id}`).then(async (res) => {
-        await this.$store.dispatch("product/getProductsByUserId", user_id);
-      });
-    },
-    downloadProduct(id) {},
-    startDownload() {
-      this.isLoading = true;
-    },
-    finishDownload() {
-      this.isLoading = false;
     },
   },
   computed: {

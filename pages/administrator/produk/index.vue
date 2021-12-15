@@ -61,7 +61,6 @@
     <v-row>
       <v-col>
         <v-data-table
-          dense
           :headers="headers"
           :items="getProducts"
           :search="search_code"
@@ -144,6 +143,7 @@ export default {
           value: "id",
           filterable: false,
           class: "white--text blue",
+          align: 'center',
         },
       ],
       json_fields: {
