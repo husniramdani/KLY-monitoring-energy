@@ -153,7 +153,6 @@ const DAY_IN_A_MONTH = 30
 const BATTERY_VOLTAGE = 24
 const BATTERY_UNIT_CAPACITY = 100
 const RATIO_AC_DC = 1.2
-const PERFORMANCE_RATIO_PV = 0.75
 
 export default {
   name: "SimpleMode",
@@ -217,15 +216,16 @@ export default {
     inverterCapacity(){
       // Kapasitas Inverter= (DEC:Rasio Performa PV) / (PSH*PSH Correction)
       // Kapasitas Inverter= (DEC:75%) / (PSH*PSH Correction)
-      return ((this.calculateDEC/RATIO_PV_PERFORMANCE) / (this.location.psh/CORRECTION_PSH)).toFixed(2)
+      return ((this.calculateDEC/RATIO_PV_PERFORMANCE) / (this.location.psh*CORRECTION_PSH)).toFixed(2)
     },
     PVCapacityWithInverter(){
       // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
-      return (this.inverterCapacity/RATIO_AC_DC).toFixed(2)
+      return (this.inverterCapacity*RATIO_AC_DC).toFixed(2)
     },
     PVCapacityWithoutInverter(){
-      // Kapasitas PV Inverter= Kapasitas Inverter * Rasio DC/AC
-      return ((this.calculateDEC/PERFORMANCE_RATIO_PV)/(this.location.psh/CORRECTION_PSH)).toFixed(2)
+      // Kapasitas PV Non Inverter= (DEC:Rasio Performa PV)/(PSH*PSH Correction)
+      // Kapasitas PV Non Inverter= (DEC:75%)/(PSH*PSH Correction)
+      return ((this.calculateDEC/RATIO_PV_PERFORMANCE)/(this.location.psh*CORRECTION_PSH)).toFixed(2)
     }
   },
   methods:{
