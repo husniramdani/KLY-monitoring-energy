@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card 
+    <v-card
       elevation="1"
       class="pa-4">
       <!-- <v-row align="center">
@@ -23,6 +23,7 @@
         </v-col>
         <v-col cols="9">
           <v-text-field
+            disabled
             v-model="fullname"
             outlined
             dense
@@ -38,6 +39,7 @@
         </v-col>
         <v-col cols="9">
           <v-text-field
+            disabled
             v-model="email"
             outlined
             dense
@@ -53,6 +55,7 @@
         </v-col>
         <v-col cols="9">
           <v-text-field
+            disabled
             v-model="username"
             outlined
             dense
@@ -64,12 +67,12 @@
       </v-row>
       <v-row class="mt-5 d-flex" align="center">
         <v-col cols="12" class="d-flex justify-end">
-           <v-btn
+           <!-- <v-btn
             color="success"
             elevation="2"
             class="text-capitalize mb-3 px-10 mr-5"
             @click="edit"
-          ><v-icon dark class="pr-1"> mdi-pencil </v-icon>Edit</v-btn>
+          ><v-icon dark class="pr-1"> mdi-pencil </v-icon>Edit</v-btn> -->
           <v-btn
             color="primary"
             elevation="2"
