@@ -92,13 +92,13 @@ export default {
         { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue" }
       ],
       operatorProducts: [
-        {
-          no: 1,
-          code: "KODEPRODUKSI1",
-          date_created: "Operator A",
-          date_release: "28 September 2021",
-          id: 1,
-        },
+        // {
+        //   no: 1,
+        //   code: "KODEPRODUKSI1",
+        //   date_created: "Operator A",
+        //   date_release: "28 September 2021",
+        //   id: 1,
+        // },
       ],
     }
   },

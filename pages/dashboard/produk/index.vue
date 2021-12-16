@@ -41,7 +41,7 @@
           :search="search_code"
           class="elevation-1"
         >
-          <template v-slot:[`item.id`]="{ item }">
+          <template v-slot:[`item.id`]>
              <v-icon class="black--text h6 pl-1" @click="notification=true">
                mdi-information-outline
             </v-icon>

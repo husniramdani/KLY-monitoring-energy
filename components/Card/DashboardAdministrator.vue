@@ -12,7 +12,7 @@
                 color="primary"
                 elevation="2"
                 class="text-capitalize bg-blue-400"
-                @click="moreInformartion"
+                :to="content.url"
                 >Info Lebih</v-btn>
             </v-col>
         </v-row>
