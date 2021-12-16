@@ -9,9 +9,9 @@
           <p class="text-body-2">
             Buat keputusan cerdas tentang penggunaan energi Anda. Anda akan terkejut dengan jumlah Tabungan!
           </p>
-          <v-btn depressed large color="primary" class="d-none d-sm-block"
+          <!-- <v-btn depressed large color="primary" class="d-none d-sm-block"
             >Dapatkan Sekarang</v-btn
-          >
+          > -->
         </v-col>
         <v-col>
           <img
@@ -21,11 +21,11 @@
           />
         </v-col>
       </v-row>
-      <v-row class="d-sm-none">
+      <!-- <v-row class="d-sm-none">
         <v-col class="d-flex justify-center"
           ><v-btn depressed large color="primary">Dapatkan Sekarang</v-btn></v-col
         >
-      </v-row>
+      </v-row> -->
       <v-row class="mt-10">
         <CardLanding v-for="(content, index) in contents" :key="index" :content="content"/>
       </v-row>
