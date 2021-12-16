@@ -8,15 +8,13 @@
         >
           <v-col cols="6" sm="2" md="3" class="">
             <nuxt-link to="/" class="text-xl font-semibold">
-              <img
-                class="w-10"
-                src="~assets/images/logo.webp"
-                alt="logo"
-              />
+              <img class="w-10" src="~assets/images/logo.webp" alt="logo" />
             </nuxt-link>
           </v-col>
           <v-col cols="6" class="d-none d-sm-block text-center space-x-8">
-            <nuxt-link class="text--darken-2 grey--text" to="/">Beranda</nuxt-link>
+            <nuxt-link class="text--darken-2 grey--text" to="/"
+              >Beranda</nuxt-link
+            >
             <nuxt-link class="text--darken-2 grey--text" to="/calculator"
               >Kalkulator</nuxt-link
             >
@@ -38,9 +36,7 @@
               color="primary"
               @click.stop="drawer = !drawer"
             >
-              <v-icon>
-                mdi-format-list-bulleted-square
-              </v-icon>
+              <v-icon> mdi-format-list-bulleted-square </v-icon>
             </v-btn>
           </v-col>
         </v-row>
@@ -57,22 +53,28 @@
 
       <v-list dense>
         <v-list-item v-for="item in items" :key="item.title" link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+          <nuxt-link class="text--darken-2 grey--text flex" :to="item.to">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </nuxt-link>
+        </v-list-item>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <nuxt-link class="text--darken-2 grey--text" to="/login">
+              <v-btn color="primary">Login</v-btn>
+            </nuxt-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-btn color="primary">Login</v-btn>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-content>
+            <nuxt-link class="text--darken-2 grey--text" to="/dashboard/demo">
             <v-btn color="primary">Demo</v-btn>
+            </nuxt-link>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -85,25 +87,25 @@ import { PhArrowRight } from "phosphor-vue";
 export default {
   name: "Navbar",
   components: {
-    PhArrowRight
+    PhArrowRight,
   },
   data() {
     return {
       drawer: null,
       items: [
-        { title: "Home", icon: "mdi-view-dashboard" },
-        { title: "Calculator", icon: "mdi-forum" },
-        { title: "Contact", icon: "mdi-forum" }
-      ]
+        { title: "Home", icon: "mdi-view-dashboard", to: "/" },
+        { title: "Kalkulator", icon: "mdi-forum", to: "/calculator" },
+        { title: "Contact", icon: "mdi-forum", to: "/contact" },
+      ],
     };
   },
   methods: {
     onDemo() {
       this.$router.push({
-        name: 'dashboard-demo',
-        path: '/dashboard/demo',
+        name: "dashboard-demo",
+        path: "/dashboard/demo",
       });
-    }
-  }
+    },
+  },
 };
 </script>
