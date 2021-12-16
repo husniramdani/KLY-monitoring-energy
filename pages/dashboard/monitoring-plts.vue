@@ -12,12 +12,12 @@
           ></v-text-field>
       </v-col>
       <v-col class="d-flex justify-end">
-        <v-btn
+        <!-- <v-btn
           color="primary"
           class="text-capitalize mb-3 mr-3"
           small
           @click="showGraphData()"
-        ><v-icon dark> mdi-plus </v-icon>Data Grafik</v-btn>
+        ><v-icon dark> mdi-plus </v-icon>Data Grafik</v-btn> -->
         <v-btn
           color="primary"
           class="text-capitalize mb-3 mr-3"

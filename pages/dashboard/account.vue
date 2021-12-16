@@ -56,7 +56,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row align="center">
+        <!-- <v-row align="center">
           <v-col cols="3">
             <b class="text-uppercase">Status</b>
           </v-col>
@@ -72,7 +72,7 @@
               color="primary"
             ></v-text-field>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-card>
       <v-row class="mt-5 d-flex" align="center">
         <!-- <v-col cols="12" sm="6">

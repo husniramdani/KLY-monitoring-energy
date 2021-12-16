@@ -68,7 +68,7 @@ export default {
       demoDashboard : [
         {
           title:"Kode Produk",
-          value:"querty"
+          value:"qwe123asd"
         },
         {
           title:"Tanggal Pembuatan",

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Notifications :dialog="notification" :onHandlerYes="buttonOke"/>
     <v-row>
       <v-col cols="12">
         <v-btn
@@ -7,6 +8,7 @@
           elevation="2"
           outlined
           small
+          @click="notification=true"
           class="text-capitalize mb-3 mr-3"
         ><v-icon dark> mdi-plus </v-icon>Produk</v-btn>
         <v-btn
@@ -15,6 +17,7 @@
           outlined
           small
           class="text-capitalize mb-3"
+          @click="notification=true"
         ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn>
       </v-col>
     </v-row>
@@ -39,17 +42,17 @@
           class="elevation-1"
         >
           <template v-slot:[`item.id`]="{ item }">
-             <v-icon class="black--text h6 pl-1" @click="detailProduct(item)">
+             <v-icon class="black--text h6 pl-1" @click="notification=true">
                mdi-information-outline
             </v-icon>
 
             <v-icon
               color="success"
-              @click="editProduct(item)"
+              @click="notification=true"
               class="black--text h6 pl-1">
               mdi-pencil
             </v-icon>
-            <v-icon color="error" class="h6 pl-1" @click="deleteProduct(item)">
+            <v-icon color="error" class="h6 pl-1" @click="notification=true">
               mdi-trash-can-outline
             </v-icon>
           </template>
@@ -66,10 +69,10 @@ export default {
     return {
       search_code:"",
       headers: [
-        { text: 'NAMA ALAT', value: 'tool_name', class: "white--text blue"  },
-        { text: 'KODE PRODUK', value: 'product_code', filterable: false, class: "white--text blue" },
+        { text: 'KODE PRODUKSI', value: 'product_code', filterable: false, class: "white--text blue" },
+        { text: 'NAMA PRODUK', value: 'tool_name', class: "white--text blue"  },
         { text: 'TANGGAL PEMBUATAN', value: 'created_date', filterable: false, class: "white--text blue" },
-        { text: 'KODE LOKASI', value: 'location_code', filterable: false, class: "white--text blue" },
+        { text: 'TANGGAL RILIS', value: 'release_date', filterable: false, class: "white--text blue" },
         { text: 'AKSI', value: 'id', filterable: false, class: "white--text blue" }
       ],
       products: [
@@ -77,18 +80,40 @@ export default {
           tool_name: "Produk demo",
           product_code: "DEMO001",
           created_date: "2021-12-15 10:00:00",
-          location_code: "Yogya",
+          release_date: "2021-12-15 10:00:00",
           id: 1,
         },
         {
           tool_name: "Produk demo 02",
           product_code: "DEMO002",
           created_date: "2021-12-14 10:00:00",
-          location_code: "Yogya",
+          release_date: "2021-12-14 10:00:00",
           id: 2,
         },
       ],
+      alertAttribute: {
+        show: false,
+        type: "warning",
+        title: "Akun demo",
+        body: "Silahkan melakukan pembelian alat terlebih dahulu"
+      },
+      notification:false,
     }
   },
+  methods:{
+    buttonOke(){
+      this.notification = false
+    },
+  }
 };
 </script>
+
+<style scoped>
+.top-right {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 70%;
+  z-index: 100;
+}
+</style>

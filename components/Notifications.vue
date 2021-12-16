@@ -5,36 +5,23 @@
       persistent
       max-width="290"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Open Dialog
-        </v-btn>
-      </template>
       <v-card>
-        <v-card-title class="text-h5">
-          Use Google's location service?
-        </v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-text class="mt-5" align="center">
+          <div align="center" class="d-block mb-3">
+            <v-icon 
+              class="grey--text h6 pl-1"
+              size="100"
+            >mdi-alert-circle-outline</v-icon>
+          </div>
+          Silahkan membeli produk terlebih dahulu</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="clickOke"
           >
-            Disagree
-          </v-btn>
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Agree
+            Ok
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -43,10 +30,33 @@
 </template>
 <script>
   export default {
+    name: "Notifications",
+    props:{
+      dialog: {
+        type: Boolean,
+        required: true,
+      },
+      onHandlerYes: {
+        type: Function,
+        required: false,
+      },
+    },
     data () {
       return {
-        dialog: false,
+        dialog_: this.dialog,
       }
     },
+    methods:{
+      clickOke() {
+        this.onHandlerYes();
+      }
+    }
   }
 </script>
+
+<style scoped>
+.title-content {
+  font-size: 20px;
+  font-weight: 700;
+}
+</style>
