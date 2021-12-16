@@ -6,13 +6,9 @@
           class="pa-7">
           <v-row>
             <v-col cols="12" md="12">
-              <p class="primary--text font-weight-bold">Data lingkungan</p>
-              LUX-Intensitas Cahaya (Lux) <br/>
-              IRR-Intensitas Irradian Cahaya (W/m2) <br/>
-              SUD-Suhu Udara (C) <br/>
-              KUD-Kelembapan Udara (%RH) <br/>
+              <p class="primary--text font-weight-bold mb-0">Data lingkungan</p>
             </v-col>
-            <v-col cols="12" md="12">
+            <v-col cols="12 pt-0" md="12">
                 <v-data-table
                     :headers="headers"
                     :items="datas"
