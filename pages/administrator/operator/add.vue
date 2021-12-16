@@ -3,7 +3,7 @@
     <v-card 
       elevation="1"
       class="pa-4">
-      <v-row align="center">
+      <!-- <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Foto</b>
         </v-col>
@@ -16,7 +16,7 @@
             accept="image/*"
           ></v-file-input>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Nama Lengkap</b>

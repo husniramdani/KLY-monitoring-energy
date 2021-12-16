@@ -3,7 +3,7 @@
     <v-card 
       elevation="1"
       class="pa-4">
-      <v-row align="center">
+      <!-- <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Foto</b>
         </v-col>
@@ -30,7 +30,7 @@
             accept="image/*"
           ></v-file-input>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Nama Operator</b>
@@ -79,7 +79,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row align="center">
+      <!-- <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Password</b>
         </v-col>
@@ -95,7 +95,7 @@
             color="primary"
           ></v-text-field>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row class="mt-5 d-flex" align="center">
         <v-col cols="12" class="d-flex justify-end">
             <v-btn
@@ -123,10 +123,10 @@ export default {
     return {
       photo:"",
       new_photo:"",
-      fullname:"",
-      username:"",
+      fullname:this.$route.params.fullname,
+      username:this.$route.params.username,
       password:"",
-      email:"",
+      email:this.$route.params.email,
       rules: {
         fullname: [
           val => val.length <= 20 || `Max 20 characters!`,
