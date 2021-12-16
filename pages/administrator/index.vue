@@ -17,22 +17,26 @@ export default {
         {
           title: "Admin",
           quantity : 1,
-          body:"Jumlah Admin"
+          body:"Jumlah Admin",
+          url:"/administrator/admin"
         },
         {
           title: "Operator",
           quantity : 7,
-          body:"Jumlah Operator"
+          body:"Jumlah Operator",
+          url:"/administrator/operator"
         },
         {
           title: "Produk",
           quantity : 31,
-          body:"Jumlah Produk"
+          body:"Jumlah Produk",
+          url:"/administrator/produk"
         },
         {
           title: "Produk",
           quantity : 3,
-          body:"Jumlah Produk Terpakai"
+          body:"Jumlah Produk Terpakai",
+          url:"/administrator/operator-produk"
         },
       ]
     }
