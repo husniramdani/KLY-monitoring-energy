@@ -49,7 +49,7 @@
               </v-row>
               <v-row align="center" justify="center">
                 <v-col cols="12" sm="4" class="font-weight-medium d-flex" >
-                  <span class="pr-2">Total Enegri Bulanan (KWh) <InformationTooltip text="Total energi yang dipakai dalam 1 bulan"/></span>
+                  <span class="pr-2">Total Energi Bulanan (KWh) <InformationTooltip text="Total energi yang dipakai dalam 1 bulan"/></span>
                 </v-col>
                 <v-col cols="12" sm="8">
                   <v-text-field
