@@ -2,14 +2,14 @@
   <div>
     <v-row>
       <v-col cols="12" class="d-flex">
-        <v-btn
+        <!-- <v-btn
           color="accent"
           elevation="2"
           outlined
           small
           class="text-capitalize mb-3 mr-3"
           to="/administrator/operator/add"
-        ><v-icon dark> mdi-plus </v-icon>Operator</v-btn>
+        ><v-icon dark> mdi-plus </v-icon>Operator</v-btn> -->
         <downloadexcel
           class="btn"
           :data="operators"
@@ -66,8 +66,8 @@
               @click="detailProduct(item)"
               >mdi-information-outline
             </v-icon>
-            
-            <v-icon
+
+            <!-- <v-icon
               color="success"
               @click="editProduct(item)"
               class="black--text h6 pl-1"
@@ -76,7 +76,7 @@
               color="error"
               class="h6 pl-1"
               @click="deleteProduct(item)"
-            >mdi-trash-can-outline</v-icon>
+            >mdi-trash-can-outline</v-icon> -->
           </template>
         </v-data-table>
       </v-col>
