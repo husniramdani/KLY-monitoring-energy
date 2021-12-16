@@ -16,17 +16,17 @@ export default {
       cardDashboard: [
         {
           title: "Admin",
-          quantity : 3,
+          quantity : 1,
           body:"Jumlah Admin"
         },
         {
           title: "Operator",
-          quantity : 1,
+          quantity : 7,
           body:"Jumlah Operator"
         },
         {
           title: "Produk",
-          quantity : 3,
+          quantity : 31,
           body:"Jumlah Produk"
         },
         {

@@ -3,7 +3,7 @@
     <v-card 
       elevation="1"
       class="pa-4">
-      <v-row align="center">
+      <!-- <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Foto</b>
         </v-col>
@@ -16,7 +16,7 @@
             accept="image/*"
           ></v-file-input>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row align="center">
         <v-col cols="3">
           <b class="text-uppercase">Nama Operator</b>
@@ -68,13 +68,13 @@
             color="success"
             elevation="2"
             class="text-capitalize mb-3 px-10 mr-5"
-            to="/administrator/operator/1"
+            @click="edit"
           ><v-icon dark class="pr-1"> mdi-pencil </v-icon>Edit</v-btn>
           <v-btn
             color="primary"
             elevation="2"
             class="text-capitalize mb-3 px-10"
-            to="/administrator/admin"
+            to="/administrator/operator"
           ><v-icon dark class="pr-1"> mdi-arrow-left </v-icon> Kembali</v-btn>
         </v-col>
       </v-row>
@@ -88,10 +88,15 @@ export default {
   data() {
     return {
       photo:"",
-      fullname:"",
-      username:"",
-      email:"",
+      fullname:this.$route.params.fullname,
+      username:this.$route.params.username,
+      email:this.$route.params.email,
     }
   },
+  methods:{
+    edit(){
+      this.$router.push({ name : "administrator-operator-id", params : this.$route.params})
+    }
+  }
 };
 </script>
