@@ -111,7 +111,7 @@ export default {
         {
           icon: "",
           title: "Daftar Produk",
-          to: "/dashboard/monitoring-product"
+          to: "/dashboard/produk"
         },
         {
           icon: "",
