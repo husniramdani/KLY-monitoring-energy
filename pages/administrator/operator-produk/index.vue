@@ -11,13 +11,6 @@
           to="/administrator/operator-produk/add"
         ><v-icon dark> mdi-plus </v-icon>Produk</v-btn>
         <v-btn
-          color="warning"
-          elevation="2"
-          outlined
-          small
-          class="text-capitalize mb-3 mr-3"
-        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download PDF</v-btn>
-        <v-btn
           color="success"
           elevation="2"
           outlined
@@ -40,7 +33,6 @@
     <v-row>
       <v-col>
         <v-data-table
-          dense
           :headers="headers"
           :items="operatorProducts"
           :search="search"
@@ -63,7 +55,7 @@
               class="h6 pl-1"
               @click="deleteProduct(item)"
             >mdi-trash-can-outline</v-icon>
-            <v-icon
+            <!-- <v-icon
               color="warning" 
               class="h6 pl-1"
               @click="downlaodProduct(item)"
@@ -72,7 +64,7 @@
               color="success" 
               class="h6 pl-1"
               @click="downlaodProduct(item)"
-            >mdi-tray-arrow-down</v-icon>
+            >mdi-tray-arrow-down</v-icon> -->
           </template>
         </v-data-table>
       </v-col>

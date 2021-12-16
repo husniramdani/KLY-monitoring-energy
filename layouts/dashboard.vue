@@ -57,6 +57,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <ButtonLogout />
     </v-navigation-drawer>
     <v-app-bar
       fixed
@@ -111,7 +112,7 @@ export default {
         {
           icon: "",
           title: "Daftar Produk",
-          to: "/dashboard/monitoring-product"
+          to: "/dashboard/produk"
         },
         {
           icon: "",

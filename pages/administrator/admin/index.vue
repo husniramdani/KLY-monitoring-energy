@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" class="d-flex">
         <v-btn
           color="accent"
           elevation="2"
@@ -10,20 +10,35 @@
           class="text-capitalize mb-3 mr-3"
           to="/administrator/admin/add"
         ><v-icon dark> mdi-plus </v-icon>Admin</v-btn>
-        <v-btn
+        <!-- <v-btn
           color="warning"
           elevation="2"
           outlined
           small
           class="text-capitalize mb-3 mr-3"
-        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download PDF</v-btn>
-        <v-btn
+        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download PDF</v-btn> -->
+        <downloadexcel
+          class="btn"
+          :data="admin"
+          :fields="json_fields"
+          name="Data-Admin.xls"
+        >
+          <v-btn
+            color="success"
+            elevation="2"
+            outlined
+            small
+            class="text-capitalize mb-3"
+            ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn
+          >
+        </downloadexcel>
+        <!-- <v-btn
           color="success"
           elevation="2"
           outlined
           small
           class="text-capitalize mb-3"
-        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn>
+        ><v-icon dark> mdi-tray-arrow-down </v-icon>Download Excel</v-btn> -->
       </v-col>
     </v-row>
     <v-row class="mt-0">
@@ -40,7 +55,6 @@
     <v-row>
       <v-col>
         <v-data-table
-          dense
           :headers="headers"
           :items="admin"
           :search="search"
@@ -70,16 +84,6 @@
               class="h6 pl-1"
               @click="deleteProduct(item)"
             >mdi-trash-can-outline</v-icon>
-            <v-icon
-              color="warning" 
-              class="h6 pl-1"
-              @click="downlaodProduct(item)"
-            >mdi-tray-arrow-down</v-icon>
-            <v-icon
-              color="success" 
-              class="h6 pl-1"
-              @click="downlaodProduct(item)"
-            >mdi-tray-arrow-down</v-icon>
           </template>
         </v-data-table>
       </v-col>
@@ -87,21 +91,25 @@
   </div>
 </template>
 <script>
+import downloadexcel from "vue-json-excel";
 export default {
   name: "DaftarAdmin",
   layout: "administrator",
+  components: {
+    downloadexcel
+  },
   data () {
     return {
       search:"",
       headers: [
-        {
-          text: 'NO',
-          align: 'start',
-          filterable: false,
-          value: 'no',
-          class: "white--text blue"
-        },
-        { text: 'FOTO', value: 'photo', class: "white--text blue" },
+        // {
+        //   text: 'NO',
+        //   align: 'start',
+        //   filterable: false,
+        //   value: 'no',
+        //   class: "white--text blue"
+        // },
+        // { text: 'FOTO', value: 'photo', class: "white--text blue" },
         { text: 'NAMA LENGKAP', value: 'fullname', class: "white--text blue" },
         { text: 'EMAIL', value: 'email', filterable: false, class: "white--text blue"},
         { text: 'USERNAME', value: 'username', filterable: false, class: "white--text blue"},
@@ -111,12 +119,17 @@ export default {
         {
           no: 1,
           photo: "ava1.png",
-          fullname: "Admin xxx",
-          email: "a@a.com",
-          username: "adminxx",
+          fullname: "administrator",
+          email: "admin@test.dev",
+          username: "admin",
           id: 1,
         },
       ],
+      json_fields: {
+        "Nama Lengkap": "fullname",
+        "Email": "email",
+        "Username": "username",
+      },
     }
   },
   methods:{
