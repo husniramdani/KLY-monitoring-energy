@@ -126,8 +126,8 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Account",
-  layout: "administrator",
-  async fetch({ store, route }) {
+  layout: "operator",
+  async fetch({ store }) {
     await store.dispatch("user/getUserDetail");
   },
   data() {

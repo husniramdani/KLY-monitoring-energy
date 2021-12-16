@@ -104,7 +104,7 @@
             color="primary"
             elevation="2"
             class="text-capitalize mb-3 px-10"
-            to="/administrator/produk"
+            to="/operator/monitoring-product"
             ><v-icon dark class="pr-1"> mdi-arrow-left </v-icon> Kembali</v-btn
           >
         </v-col>
@@ -114,8 +114,8 @@
 </template>
 <script>
 export default {
-  name: "AdministratorDetailProduct",
-  layout: "administrator",
+  name: "OperatorDetailProduct",
+  layout: "operator",
   data() {
     const { code, name, created_at } = this.$route.params;
     return {
@@ -130,7 +130,7 @@ export default {
   methods: {
     cancel() {},
     editProduct(id) {
-      this.$router.push({ name: "administrator-produk-id", params: this.$route.params });
+      this.$router.push({ name: "operator-monitoring-product-id", params: this.$route.params });
     },
   },
 };
