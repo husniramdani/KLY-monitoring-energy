@@ -40,10 +40,10 @@
       </v-row>
       <v-row class="d-sm-none mt-5">
         <v-col class="d-flex justify-center">
-          <v-btn depressed large color="primary" class="text-capitalize mr-5"
+          <v-btn depressed large color="primary" class="text-capitalize mr-5" to="/calculator/simple-mode"
             >Kalkulator Sederhana</v-btn
           >
-          <v-btn depressed large color="primary" class="text-capitalize"
+          <v-btn depressed large color="primary" class="text-capitalize" to="/calculator/advanced-mode"
             >Kalkulator Lanjutan</v-btn
           >
         </v-col>
